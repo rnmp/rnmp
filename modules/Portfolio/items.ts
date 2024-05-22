@@ -29,7 +29,7 @@ Data visualization in a highly competitive in space where innovation is needed: 
     src: "https://framerusercontent.com/images/oNt0ESKQfWYVWLc5FVTcPZwjM8.png",
   },
   {
-    title: "Air Flow",
+    title: "Air",
     description: `Thanks to Sensive, I met the wonderful team over at [Air](https://www.air.inc). Together, we built a really cool media management app for creative teams. My first project was to build a macOS to sync local files with the cloud, Air Flow, in a low touch way.`,
     src: "https://img.plasmic.app/img-optimizer/v1/img/7358fcb53e0c6829ec0bfc2a1ff86ff6.png?q=75&f=webp",
   },
