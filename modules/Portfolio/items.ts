@@ -39,11 +39,9 @@ Thanks to Sensive, I met the wonderful team over at [Air](https://www.air.inc). 
   {
     title: "Coleure",
     description: `
-Choosing colors is a fun part of the design process. But it often starts in a depressing way: with a blank canvas (aka color wheel) or with a set of palettes that are not your own. 
+Choosing colors is a fun part of the design process. But it often can be intimidating with (200M+ color options). Coleure reduces the upfront decision paralysis and provides a intuitive color making experience with features like color mixing, proofing, contrast test, etc.
 
-Coleure was built to remove 200M+ color options so you can get started quicker on finding a color, then it helps you mix and match with different options.
-
-Sadly, it got sold to a marketing agency in 2015 and I haven’t seen it since.
+A few years after launching, it got purchased by a media company for internal use, and thus sadly taken down from the public.
     `,
     src: "https://framerusercontent.com/images/KmUXgRvK2EBCZ4on5tm20HS6Ns.png",
   },
