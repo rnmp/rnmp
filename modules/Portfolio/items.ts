@@ -39,7 +39,7 @@ Thanks to Sensive, I met the wonderful team over at [Air](https://www.air.inc). 
   {
     title: "Coleure",
     description: `
-Choosing colors is a fun part of the design process. But it often can be intimidating with (200M+ color options). Coleure reduces the upfront decision paralysis and provides a intuitive color making experience with features like color mixing, proofing, contrast test, etc.
+Choosing colors is a fun part of the design process. But it often can be intimidating (200M+ colors to choose from!). Coleure reduces the upfront decision paralysis and provides a intuitive color making experience with features like color mixing, proofing, contrast test, etc.
 
 A few years after launching, it got purchased by a media company for internal use, and thus sadly taken down from the public.
     `,
