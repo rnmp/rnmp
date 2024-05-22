@@ -25,7 +25,11 @@ Data visualization in a highly competitive in space where innovation is needed: 
   },
   {
     title: "Bleep",
-    description: "A Framer X component for creating responsive layouts",
+    description: `
+The note-taking / inspiration gathering / life organizing tool I’ve been making for the past two years. It’s taking forever to complete — help!
+
+But also, [check it out](https://bleep.is). It's pretty cool.
+`,
     src: "https://framerusercontent.com/images/oNt0ESKQfWYVWLc5FVTcPZwjM8.png",
   },
   {
