@@ -1,3 +1,4 @@
+import { useMedia } from "@/hooks/useMediaQuery";
 import { HTMLAttributes } from "react";
 
 type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
@@ -29,6 +30,7 @@ const Variants = {
 };
 
 export const Button: React.FC<ButtonProps> = (props) => {
+  const { phone, tablet } = useMedia();
   const { variant = "primary" } = props;
   return (
     <button
@@ -39,7 +41,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
         backgroundColor: "transparent",
         color: "inherit",
         fontFamily: "inherit",
-        fontSize: 24,
+        fontSize: phone ? 16 : 24,
         cursor: "pointer",
         padding: "16px 48px 16px 48px",
         display: "flex",
