@@ -13,7 +13,7 @@ among other things
   seoDescription:
     "Peruvian-American engineer & designer based in Philadelphia, PA.",
   intro: `
-Peruvian-American engineer & designer, or simply Rolando. Above is my favorite work, but feel free to explore the [B-side](https://my.bleep.is/s/e245517c).
+Peruvian-American engineer & designer, or simply Rolando. Above is my favorite work, but feel free to explore the [B-side](https://world.hey.com/rolandomurillo).
   `,
 };
 
