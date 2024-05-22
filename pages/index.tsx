@@ -4,6 +4,7 @@ import { TextBlock } from "@/components/Content";
 import { Button } from "@/components/Button";
 import { HStack, VStack } from "@/components/Stack";
 import Markdown from "react-markdown";
+import { useState } from "react";
 
 const Content = {
   tagline: `
@@ -78,9 +79,25 @@ export default function Home() {
           {Content.intro}
         </TextBlock>
         <HStack>
-          <Button variant="embossed">Reach out</Button>
+          <FancyEmailButton />
         </HStack>
       </VStack>
     </>
   );
 }
+
+const FancyEmailButton = () => {
+  const [copied, setCopied] = useState(false);
+  return (
+    <Button
+      variant="embossed"
+      onClick={async () => {
+        await navigator.clipboard.writeText("rolandomurillo@hey.com");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }}
+    >
+      {copied ? "Email copied!" : "Reach out"}
+    </Button>
+  );
+};
