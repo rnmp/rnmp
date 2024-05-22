@@ -44,6 +44,7 @@ export const PortfolioItemWidget = (props: {
   index: number;
 }) => {
   const { title, description, src } = props.item;
+  const [key, setKey] = useState(0);
   const [expanded, setExpanded] = useState(false);
   const [containerRef, animateContainer] = useAnimate();
   const [headerRef, animateHeader] = useAnimate();
@@ -92,6 +93,7 @@ export const PortfolioItemWidget = (props: {
 
   const collapse = useCallback(async () => {
     setExpanded(false);
+    containerRef.current?.scrollTo(0, 0);
     const rect = containerRectRef.current;
     if (!rect) {
       return;
@@ -127,6 +129,7 @@ export const PortfolioItemWidget = (props: {
     });
     document.documentElement.style.overflow = "auto";
     document.body.style.overflow = "auto";
+    setKey((k) => k + 1);
   }, [animateContainer, animateHeader, containerRef, headerRef]);
 
   useEffect(() => {
@@ -143,6 +146,7 @@ export const PortfolioItemWidget = (props: {
   return (
     <div
       ref={containerRef}
+      key={key}
       style={{
         backgroundColor: "#1E192D",
         ...styles.container,
