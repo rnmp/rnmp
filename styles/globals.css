@@ -29,11 +29,14 @@ a {
 }
 
 :root {
+  --header-height: 64vh;
   --font-size-hero: 72px;
   --font-size-hero2: 48px;
   --font-size-button: 24px;
 
   --content-padding: 0em;
+
+  --grid-template-hero: repeat(5, minmax(20vw, 1fr));
 
   --dimension-logo: 88px;
 
@@ -47,14 +50,20 @@ a {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   :root {
+    --header-height: 32vh;
+
     --font-size-hero: 28px;
     --font-size-hero2: 20px;
     --font-size-button: 16px;
 
-    --dimension-logo: 44px;
-
     --content-padding: 1em;
+
+    /*
+    --grid-template-hero: repeat(2, minmax(20vw, 1fr));
+    */
+
+    --dimension-logo: 44px;
   }
 }

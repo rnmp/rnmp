@@ -22,7 +22,7 @@ type StyleSheet = {
 const styles: StyleSheet = {
   container: {
     width: "auto",
-    height: 390,
+    height: "auto",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
@@ -150,6 +150,7 @@ export const PortfolioItemWidget = (props: {
       style={{
         backgroundColor: "#1E192D",
         ...styles.container,
+        aspectRatio: "1 / 1",
         marginTop: props.index === 2 ? 0 : props.index % 2 ? 50 : 100,
       }}
     >

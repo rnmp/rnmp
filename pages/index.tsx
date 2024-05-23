@@ -29,7 +29,7 @@ export default function Home() {
       </Head>
       <TextBlock
         style={{
-          height: "64vh",
+          height: "var(--header-height)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -52,10 +52,10 @@ export default function Home() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(5, minmax(200px, 1fr))",
+          gridTemplateColumns: "var(--grid-template-hero)",
           gridAutoRows: "minmax(0, 1fr)",
           gridTemplateRows: "repeat(1, minmax(0, 1fr))",
-          height: PortfolioItemWidget.geometry.containerHeight * 1.25,
+          height: "calc(100vw / 5 * 1.25)",
           background:
             "linear-gradient(180deg, rgba(251, 251, 251, 0) 0%, rgb(251, 251, 251) 100%)",
         }}
