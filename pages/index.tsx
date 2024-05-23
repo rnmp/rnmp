@@ -78,6 +78,7 @@ export default function Home() {
             margin: "auto",
             textAlign: "center",
             fontSize: "var(--font-size-hero2)",
+            padding: "0 1em",
           }}
         >
           {Content.intro}

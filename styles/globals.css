@@ -29,7 +29,7 @@ a {
 }
 
 :root {
-  --font-size-hero: 72px;
+  --font-size-hero: 20px;
   --font-size-hero2: 48px;
   --font-size-button: 24px;
 
@@ -39,6 +39,12 @@ a {
   --breakpoint-tablet: 1200px;
 }
 
+@media (max-width: 1200px) {
+  :root {
+    --font-size-hero: 48px;
+  }
+}
+
 @media (max-width: 480px) {
   :root {
     --font-size-hero: 28px;
@@ -46,11 +52,5 @@ a {
     --font-size-button: 16px;
 
     --dimension-logo: 44px;
-  }
-}
-
-@media (max-width: 1200px) {
-  :root {
-    --font-size-hero: 48px;
   }
 }
