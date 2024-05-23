@@ -230,7 +230,7 @@ export const PortfolioItemWidget = (props: {
       <TextBlock
         style={{
           color: "#957FD7",
-          fontSize: 24,
+          fontSize: "var(--font-size-body)",
           maxWidth: 600,
           margin: "0 auto",
           paddingBottom: "3em",
