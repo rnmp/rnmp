@@ -151,7 +151,7 @@ export const PortfolioItemWidget = (props: {
         backgroundColor: "#1E192D",
         ...styles.container,
         aspectRatio: "1 / 1",
-        marginTop: props.index === 2 ? 0 : props.index % 2 ? 50 : 100,
+        marginTop: props.index === 2 ? 0 : props.index % 2 ? "2.5vw" : "5vw",
       }}
     >
       <div
@@ -223,6 +223,7 @@ export const PortfolioItemWidget = (props: {
           alt=""
           style={{
             maxHeight: "75vh",
+            maxWidth: "100vw",
           }}
         />
       </figure>
