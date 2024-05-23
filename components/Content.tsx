@@ -8,7 +8,22 @@ export const TextBlock: React.FC<{
 }> = (props) => (
   <div className={styles.content} style={props.style}>
     {typeof props.children === "string" ? (
-      <Markdown>{props.children}</Markdown>
+      <Markdown
+        components={{
+          a: ({ node, href, children, ...props }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              {...props}
+            >
+              {children}
+            </a>
+          ),
+        }}
+      >
+        {props.children}
+      </Markdown>
     ) : (
       props.children
     )}
