@@ -27,3 +27,30 @@ a {
     color-scheme: dark;
   }
 }
+
+:root {
+  --font-size-hero: 72px;
+  --font-size-hero2: 48px;
+  --font-size-button: 24px;
+
+  --dimension-logo: 88px;
+
+  --breakpoint-phone: 480px;
+  --breakpoint-tablet: 1200px;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-hero: 28px;
+    --font-size-hero2: 20px;
+    --font-size-button: 16px;
+
+    --dimension-logo: 44px;
+  }
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --font-size-hero: 48px;
+  }
+}

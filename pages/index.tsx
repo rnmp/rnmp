@@ -5,7 +5,6 @@ import { Button } from "@/components/Button";
 import { HStack, VStack } from "@/components/Stack";
 import Markdown from "react-markdown";
 import { useState } from "react";
-import { useMedia } from "@/hooks/useMediaQuery";
 
 const Content = {
   tagline: `
@@ -20,7 +19,6 @@ Peruvian-American engineer & designer, or simply Rolando. Above is my curated wo
 };
 
 export default function Home() {
-  const { phone, tablet } = useMedia();
   return (
     <>
       <Head>
@@ -36,7 +34,7 @@ export default function Home() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: phone ? 28 : tablet ? 48 : 72,
+          fontSize: "var(--font-size-hero)",
           textAlign: "center",
         }}
       >
@@ -44,8 +42,8 @@ export default function Home() {
           src="/portrait.png"
           alt="logo"
           style={{
-            width: phone ? 44 : 88,
-            height: phone ? 44 : 88,
+            width: "var(--dimension-logo)",
+            height: "var(--dimension-logo)",
             borderRadius: "50%",
           }}
         />
@@ -79,7 +77,7 @@ export default function Home() {
             maxWidth: 900,
             margin: "auto",
             textAlign: "center",
-            fontSize: phone ? 20 : 48,
+            fontSize: "var(--font-size-hero2)",
           }}
         >
           {Content.intro}
