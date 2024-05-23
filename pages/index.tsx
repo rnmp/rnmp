@@ -15,7 +15,7 @@ among other things
   seoDescription:
     "Peruvian-American engineer & designer based in Philadelphia, PA.",
   intro: `
-Peruvian-American engineer & designer, or simply Rolando. Above is my favorite work, but feel free to explore the [B-side](https://world.hey.com/rolandomurillo).
+Peruvian-American engineer & designer, or simply Rolando. Above is my curated work. I occasionally post on my [B-side.](https://world.hey.com/rolandomurillo)
   `,
 };
 
@@ -103,7 +103,7 @@ const FancyEmailButton = () => {
         setTimeout(() => setCopied(false), 2000);
       }}
     >
-      {copied ? "Email copied!" : "Reach out"}
+      {copied ? "Email copied to clipboard" : "Reach out"}
     </Button>
   );
 };
