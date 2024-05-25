@@ -165,28 +165,14 @@ export const PortfolioItemWidget = (props: {
             variant="tinted"
             onClick={collapse}
             style={{
-              fontSize: 16,
+              fontSize: "calc(var(--font-size-headline) * 1.5)",
               width: "calc(var(--modal-header-height) * 0.64)",
               height: "calc(var(--modal-header-height) * 0.64)",
               padding: 0,
               color: "#957FD7",
             }}
           >
-            <svg
-              width="20px"
-              height="20px"
-              viewBox="0 0 7 7"
-              fill="#957FD7"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.8084 1.18945L1.1904 5.80745M5.8095 5.8095L1.1875 1.1875"
-                stroke="#957FD7"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            &times;
           </Button>
         </header>
       </div>
