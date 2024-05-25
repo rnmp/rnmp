@@ -193,7 +193,7 @@ export const PortfolioItemWidget = (props: {
       <figure
         style={{
           cursor: expanded ? "auto" : "pointer",
-          minHeight: "100%",
+          minHeight: "var(--modal-cover-height)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

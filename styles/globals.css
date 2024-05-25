@@ -39,6 +39,7 @@ a {
   --content-padding: 0em;
 
   --modal-header-height: 80px;
+  --modal-cover-height: 100%;
 
   --grid-template-hero: repeat(5, minmax(20vw, 1fr));
 
@@ -70,6 +71,7 @@ a {
     --content-padding: 1em;
 
     --modal-header-height: 60px;
+    --modal-cover-height: 100%;
 
     /*
     --grid-template-hero: repeat(2, minmax(20vw, 1fr));
