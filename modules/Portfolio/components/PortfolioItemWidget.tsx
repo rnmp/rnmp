@@ -69,24 +69,13 @@ export const PortfolioItemWidget = (props: {
         translateY: -rect.top,
         translateX: -rect.left,
         width: "100vw",
-        height: "100vh",
+        height: "100dvh",
         borderRadius: 0,
         overflow: "auto",
         zIndex: 1,
       },
       { ease: "anticipate", duration: 0.5 }
     );
-    // animateContainer(
-    //   containerRef.current,
-    //   {
-    //     position: "fixed",
-    //     top: 0,
-    //     left: 0,
-    //     translateY: 0,
-    //     translateX: 0,
-    //   },
-    //   { duration: 0 }
-    // );
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
   };
@@ -98,19 +87,6 @@ export const PortfolioItemWidget = (props: {
     if (!rect) {
       return;
     }
-    // animateContainer(
-    //   containerRef.current,
-    //   {
-    //     position: "relative",
-    //     top: 0,
-    //     left: 0,
-    //     translateY: -rect.top,
-    //     translateX: -rect.left,
-    //     width: "100vw",
-    //     height: "100vh",
-    //   },
-    //   { duration: 0 }
-    // );
     animateHeader(headerRef.current, {
       opacity: 0,
       paddingTop: 0,
@@ -166,7 +142,7 @@ export const PortfolioItemWidget = (props: {
           style={{
             position: "fixed",
             top: 0,
-            height: Geometry.headerHeight,
+            height: "var(--modal-header-height)",
             width: "100%",
             display: "flex",
             alignItems: "center",
@@ -174,8 +150,15 @@ export const PortfolioItemWidget = (props: {
             padding: "0 1rem",
           }}
         >
-          <div style={{ width: Geometry.headerHeight * 0.64 }}></div>
-          <h1 style={{ color: "#fff", textAlign: "center", flex: 1 }}>
+          <div style={{ width: "calc(var(--modal-header-height) * 0.64)" }} />
+          <h1
+            style={{
+              color: "#fff",
+              textAlign: "center",
+              flex: 1,
+              fontSize: "var(--font-size-headline)",
+            }}
+          >
             {title}
           </h1>
           <Button
@@ -183,8 +166,8 @@ export const PortfolioItemWidget = (props: {
             onClick={collapse}
             style={{
               fontSize: 16,
-              width: Geometry.headerHeight * 0.64,
-              height: Geometry.headerHeight * 0.64,
+              width: "calc(var(--modal-header-height) * 0.64)",
+              height: "calc(var(--modal-header-height) * 0.64)",
               padding: 0,
               color: "#957FD7",
             }}
@@ -233,9 +216,9 @@ export const PortfolioItemWidget = (props: {
           fontSize: "var(--font-size-body)",
           maxWidth: 600,
           margin: "0 auto",
-          paddingBottom: "3em",
           lineHeight: 1.5,
           textAlign: "center",
+          padding: "0 var(--content-padding) 3em",
         }}
       >
         {description}
