@@ -56,8 +56,6 @@ export default function Home() {
           gridAutoRows: "minmax(0, 1fr)",
           gridTemplateRows: "repeat(1, minmax(0, 1fr))",
           height: "calc(100vw / 5 * 1.25)",
-          background:
-            "linear-gradient(180deg, rgba(251, 251, 251, 0) 0%, rgb(251, 251, 251) 100%)",
         }}
       >
         {PortfolioItems.map((item, index) => (
@@ -69,7 +67,6 @@ export default function Home() {
           paddingTop: "6em",
           paddingBottom: "6em",
           gap: "4em",
-          backgroundColor: "#FBFBFB",
         }}
       >
         <TextBlock
