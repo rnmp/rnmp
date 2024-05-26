@@ -8,9 +8,9 @@ export const PortfolioItems: PortfolioItem[] = [
   {
     title: "Sensive",
     description: `
-My friend Diego and I made a design tool plugin to sync Figma and Sketch files into a shared dashboard for teams.
+My friend Diego and I made a Figma plugin to upload designs as you work on them so teams can build processes around them.
 
-It was really neat, we launched it on Product Hunt and got a lot of attention. We even got a few paying customers. 
+It was really neat, we [launched it](https://www.producthunt.com/products/sensive#sensive) on Product Hunt to positive reception. We even got a few paying customers! 
     `,
     src: "https://firebasestorage.googleapis.com/v0/b/blocks-e243f.appspot.com/o/b605f3c8-1a69-4c63-af5b-06d09f357561%2Fimage.png?alt=media&token=b7a454bd-e865-4b03-bf7c-9a54448534dc",
   },
