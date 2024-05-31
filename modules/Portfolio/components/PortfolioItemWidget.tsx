@@ -63,11 +63,15 @@ export const PortfolioItemWidget = (props: {
 
       { ease: "anticipate", duration: 0.5 }
     );
+
+    const translateY = `-${Math.round(rect.top)}px`;
+    const translateX = `-${Math.round(rect.left)}px`;
+
     await animateContainer(
       containerRef.current,
       {
-        translateY: -rect.top,
-        translateX: -rect.left,
+        translateY,
+        translateX,
         width: "100vw",
         height: "100dvh",
         borderRadius: 0,
