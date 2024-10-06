@@ -82,9 +82,11 @@ export const PortfolioItemWidget = (props: {
     );
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    document.body.style.backgroundColor = "var(--modal-background-color)";
   };
 
   const collapse = useCallback(async () => {
+    document.body.style.backgroundColor = "var(--body-background-color)";
     setExpanded(false);
     containerRef.current?.scrollTo(0, 0);
     const rect = containerRectRef.current;
@@ -128,7 +130,7 @@ export const PortfolioItemWidget = (props: {
       ref={containerRef}
       key={key}
       style={{
-        backgroundColor: "#1E192D",
+        backgroundColor: "var(--modal-background-color)",
         ...styles.container,
         aspectRatio: "1 / 1",
         marginTop: props.index === 2 ? 0 : props.index % 2 ? "2.5vw" : "5vw",

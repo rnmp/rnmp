@@ -14,7 +14,7 @@ body {
 
 body {
   color: #262680;
-  background: #ffffff;
+  background: var(--body-background-color);
 }
 
 a {
@@ -48,6 +48,9 @@ a {
 
   --breakpoint-phone: 480px;
   --breakpoint-tablet: 1200px;
+
+  --body-background-color: #fff;
+  --modal-background-color: #1e192d;
 }
 
 @media (max-width: 1200px) {
