@@ -1,0 +1,41 @@
+.base {
+  appearance: none;
+  font-family: inherit;
+  font-size: var(--font-size-button);
+  cursor: pointer;
+  padding: 16px 48px 16px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 100px;
+  border: none;
+}
+
+.primary {
+  color: #ff002f;
+}
+
+.embossed {
+  color: #ff002f;
+  background: transparent;
+  box-shadow: 0px 0.6021873017743928px 0.6021873017743928px -1.3333333333333333px
+      rgba(0, 0, 0, 0.19),
+    0px 2.288533303243457px 2.288533303243457px -2.6666666666666665px rgba(0, 0, 0, 0.16567),
+    0px 10px 10px -4px rgba(0, 0, 0, 0.05),
+    inset 0px 20px 12px 0px rgba(255, 255, 255, 0.2),
+    inset 0px -3px 7px 0px rgba(66, 42, 42, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  .embossed {
+    color: var(--body-foreground-color);
+    box-shadow: none;
+    border: 0.5px solid var(--body-foreground-color);
+  }
+}
+
+.tinted {
+  background: rgba(0, 0, 0, 0.2);
+}
