@@ -9,6 +9,7 @@ import {
 import { TextBlock } from "@/components/Content";
 import { Button } from "@/components/Button";
 import { PortfolioItem } from "../items";
+import css from "./Widget.module.css";
 
 const Geometry = {
   headerHeight: 80,
@@ -135,6 +136,9 @@ export const PortfolioItemWidget = (props: {
         aspectRatio: "1 / 1",
         marginTop: props.index === 2 ? 0 : props.index % 2 ? "2.5vw" : "5vw",
       }}
+      className={[css.container, expanded ? css.active : css.inactive].join(
+        " "
+      )}
     >
       <div
         ref={headerRef}
