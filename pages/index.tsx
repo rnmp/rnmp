@@ -14,7 +14,7 @@ among other things
   seoDescription:
     "Peruvian-American engineer & designer based in Philadelphia, PA.",
   intro: `
-Peruvian-American engineer & designer, or simply Rolando. Above is my curated work. I occasionally post on my [B-side.](https://world.hey.com/rolandomurillo)
+Peruvian-American maker, or simply Rolando. Above is my curated work. Find me on [X](https://x.com/rnmp) and [YouTube](https://youtube.com/@rolobuilds).
   `,
 };
 
@@ -98,8 +98,25 @@ const FancyEmailButton = () => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }}
+      style={{ width: 200, height: 54 }}
     >
-      {copied ? "Email copied to clipboard" : "Reach out"}
+      {copied ? (
+        <svg
+          width="24"
+          height="17"
+          viewBox="0 0 24 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1 8.80992L8.12849 16L23 1"
+            stroke="currentColor"
+            strokeWidth={0.5}
+          />
+        </svg>
+      ) : (
+        "Copy email"
+      )}
     </Button>
   );
 };

@@ -3,7 +3,6 @@
   font-family: inherit;
   font-size: var(--font-size-button);
   cursor: pointer;
-  padding: 16px 48px 16px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +10,10 @@
   gap: 16px;
   border-radius: 100px;
   border: none;
+}
+
+.padded {
+  padding: 16px 48px 16px 48px;
 }
 
 .primary {
