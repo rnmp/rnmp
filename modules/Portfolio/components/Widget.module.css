@@ -2,14 +2,14 @@
   transition: opacity 0.333s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  .inactive {
-    opacity: 0.6;
-  }
-  .inactive:hover {
-    opacity: 1;
-  }
-  .active {
-    opacity: 1;
-  }
+.inactive {
+  opacity: 0.6;
+}
+
+.inactive:hover {
+  opacity: 1;
+}
+
+.active {
+  opacity: 1;
 }

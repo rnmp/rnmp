@@ -20,8 +20,8 @@
   --breakpoint-tablet: 1200px;
 
   /* Colors */
-  --body-foreground-color: #262680;
-  --body-background-color: #fff;
+  --body-foreground-color: white;
+  --body-background-color: black;
   --modal-background-color: #1e192d;
 }
 
@@ -34,8 +34,8 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
-  min-height: 100vh;
+  overflow: hidden;
+  height: 100vh;
   font-feature-settings: "salt" 1;
 }
 
@@ -48,16 +48,6 @@ a {
   color: inherit;
   text-decoration-thickness: 0.5px;
   text-decoration-style: wavy;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  :root {
-    --body-foreground-color: white;
-    --body-background-color: black;
-  }
 }
 
 @media (max-width: 1200px) {
