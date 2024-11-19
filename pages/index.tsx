@@ -11,9 +11,9 @@ among other things
     "Peruvian-American engineer & designer based in Philadelphia, PA.",
   intro: (
     <>
-      Maker of whimsical apps,<br/>such as{" "}
-      <a href="https://bleep.is">Bleep</a> ·
-      Find me on<br />
+      <strong>Maker</strong> of whimsical apps,<br/>such as{" "}
+      <a href="https://bleep.is">Bleep</a> ·{" "}
+      <strong>Find me</strong> on<br />
       <a href="https://x.com/rnmp">X</a>,{" "}
       <a href="https://threads.net/@rnmp">Threads</a> &{" "}
       <a href="https://youtube.com/@rolobuilds">YouTube</a>
@@ -31,7 +31,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div style={{ 
-        minHeight: "100vh", 
+        minHeight: "100dvh",
         display: "flex", 
         flexDirection: "column",
       }}>
@@ -58,6 +58,7 @@ export default function Home() {
             style={{
               textAlign: "center",
               fontSize: "var(--font-size-hero2)",
+              lineHeight: "1.33",
             }}
           >
             {Content.intro}
