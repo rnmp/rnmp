@@ -1,0 +1,32 @@
+.base {
+  appearance: none;
+  font-family: inherit;
+  font-size: var(--font-size-button);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 100px;
+  border: none;
+  background: transparent;
+}
+
+.padded {
+  padding: 16px 48px 16px 48px;
+}
+
+.primary {
+  color: #ff002f;
+}
+
+.embossed {
+  color: var(--body-foreground-color);
+  box-shadow: none;
+  border: 0.5px solid var(--body-foreground-color);
+}
+
+.tinted {
+  background: rgba(0, 0, 0, 0.2);
+}

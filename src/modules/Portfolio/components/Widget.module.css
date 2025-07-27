@@ -1,0 +1,15 @@
+.container {
+  transition: opacity 0.333s ease-in-out;
+}
+
+.inactive {
+  opacity: 0.6;
+}
+
+.inactive:hover {
+  opacity: 1;
+}
+
+.active {
+  opacity: 1;
+}

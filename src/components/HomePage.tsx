@@ -1,6 +1,6 @@
-import { PortfolioItems, PortfolioItemWidget } from "@/modules/Portfolio";
-import Head from "next/head";
-import { TextBlock } from "@/components/Content";
+import React from 'react';
+import { PortfolioItems, PortfolioItemWidget } from '../modules/Portfolio';
+import '../styles/globals.css';
 
 const Content = {
   tagline: `
@@ -21,15 +21,9 @@ among other things
   ),
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
-      <Head>
-        <title>Rolando</title>
-        <meta name="description" content={Content.seoDescription} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+    <main>
       <div style={{ 
         minHeight: "100dvh",
         display: "flex", 
@@ -83,6 +77,6 @@ export default function Home() {
           ))}
         </div>
       </div>
-    </>
+    </main>
   );
 }

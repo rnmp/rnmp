@@ -1,0 +1,46 @@
+---
+import '../styles/globals.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.png" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DXECZ38X2P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DXECZ38X2P');
+    </script>
+  </head>
+  <body class="jugendreisen">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: 'Jugendreisen';
+    src: url('/fonts/Jugendreisen-Small.woff2') format('woff2'),
+         url('/fonts/Jugendreisen-Small.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body {
+    font-family: 'Jugendreisen', system-ui, -apple-system, sans-serif;
+  }
+</style>
