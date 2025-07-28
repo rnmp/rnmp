@@ -153,12 +153,12 @@ among other things
     };
   }
 
-  // Check if two rectangles overlap
-  function doRectsOverlap(rect1, rect2) {
-    return !(rect1.right < rect2.left || 
-             rect1.left > rect2.right || 
-             rect1.bottom < rect2.top || 
-             rect1.top > rect2.bottom);
+  // Check if two rectangles overlap (with optional margin)
+  function doRectsOverlap(rect1, rect2, margin = 0) {
+    return !(rect1.right + margin < rect2.left - margin || 
+             rect1.left - margin > rect2.right + margin || 
+             rect1.bottom + margin < rect2.top - margin || 
+             rect1.top - margin > rect2.bottom + margin);
   }
 
   // Find a non-overlapping position for a card
@@ -184,10 +184,11 @@ among other things
         bottom: y + cardHeight
       };
       
-      // Check for overlaps
+      // Check for overlaps with a soft margin
       let overlaps = false;
+      const softMargin = 30; // minimum space between cards
       for (const placedCard of placedCards) {
-        if (doRectsOverlap(newRect, placedCard.rect)) {
+        if (doRectsOverlap(newRect, placedCard.rect, softMargin)) {
           overlaps = true;
           break;
         }
