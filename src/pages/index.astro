@@ -34,32 +34,33 @@ among other things
               textAlign: "left",
               fontSize: "var(--font-size-hero2)",
               lineHeight: "1.25",
-              fontFamily: "'Playfair Display', serif",
-              filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 1.0))",
+              fontFamily: "'Jugendreisen', system-ui, -apple-system, sans-serif",
+              // filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 1.0))",
+              textShadow: "0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.1)",
             }}
           >
             Whimsical tools<br>for everyday life
           </p>
         </div>
 
-        <div class="card" style={{ width: "320px"}}>
+        <a class="card" href="https://bleep.is/" target="_blank" style={{ width: "280px"}}>
           <img src="/bleep_icon.png" alt="Bleep’s icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <p style={{ margin: 0, lineHeight: 1.4 }}>
-          Get <strong>Bleep</strong> helps you build an idea palace. Save your bookmarks, notes, and inspiration in a visual and memorable way.
+          <strong>Bleep</strong> · Organize your ideas visually. Available on iPhone, iPad, and Mac.
           </p>
-        </div>
+        </a>
 
-        <div class="card" style={{ width: "320px"}}>
+        <a class="card" href="https://testflight.apple.com/join/pumSW2WF" style={{ width: "300px"}}>
           <img src="/flow_icon.png" alt="Flow’s icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <p style={{ margin: 0, lineHeight: 1.4 }}>
-          <strong>Flow</strong> is a casual money tracker that helps you understand your spending habits without the hassle of budgeting. 
+          <strong>Flow</strong> · Casual money tracker. Currently in the works. Join the TestFlight on iPhone.
           </p>
-        </div>
+        </a>
 
-        <div class="card" style={{ width: "320px"}}>
+        <div class="card" style={{ width: "300px"}}>
           <img src="/avatar.png" alt="Rolando’s avatar" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <p style={{ margin: 0, lineHeight: 1.4 }}>
-          <strong>Rolando</strong> is an Engineer Manager during the day and an indie developer at night. 
+          <strong>About me</strong> · 👋 I’m Rolando. Jack of all trades, master of some. 
           </p>
         </div>
 
@@ -79,7 +80,7 @@ among other things
     backdrop-filter: blur(12px);
     border-radius: 20px;
     color: white;
-    cursor: move;
+    cursor: default;
     user-select: none;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease-in-out;
@@ -87,6 +88,17 @@ among other things
     flex-direction: column;
     gap: 1em;
     line-height: 1.5;
+  }
+  
+  /* Style anchor cards the same as div cards */
+  a.card {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  a.card:hover {
+    text-decoration: none;
   }
   
   /* Smooth position transitions when repositioning */
@@ -148,17 +160,31 @@ among other things
   function makeDraggable(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     let isDragging = false;
+    let hasMoved = false;
+    let startX = 0, startY = 0;
     
     // Mouse events
     element.onmousedown = dragStart;
     
     // Touch events
     element.ontouchstart = dragStart;
+    
+    // Prevent default click on anchor cards if dragged
+    if (element.tagName === 'A') {
+      element.addEventListener('click', function(e) {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+          hasMoved = false;
+        }
+      }, true);
+    }
 
     function dragStart(e) {
       e = e || window.event;
       e.preventDefault();
       isDragging = true;
+      hasMoved = false;
       
       // Raise z-index when dragging starts
       highestZIndex++;
@@ -166,15 +192,15 @@ among other things
       
       // Get initial position (works for both mouse and touch)
       if (e.type === 'touchstart') {
-        pos3 = e.touches[0].clientX;
-        pos4 = e.touches[0].clientY;
+        startX = pos3 = e.touches[0].clientX;
+        startY = pos4 = e.touches[0].clientY;
         document.ontouchend = closeDragElement;
         document.ontouchmove = elementDrag;
         // Prevent scrolling while dragging
         document.body.style.overflow = 'hidden';
       } else {
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        startX = pos3 = e.clientX;
+        startY = pos4 = e.clientY;
         document.onmouseup = closeDragElement;
         document.onmousemove = elementDrag;
       }
@@ -196,6 +222,14 @@ among other things
       } else {
         clientX = e.clientX;
         clientY = e.clientY;
+      }
+      
+      // Check if we've moved more than 5 pixels (threshold for drag vs click)
+      const moveDistance = Math.sqrt(
+        Math.pow(clientX - startX, 2) + Math.pow(clientY - startY, 2)
+      );
+      if (moveDistance > 5) {
+        hasMoved = true;
       }
       
       pos1 = pos3 - clientX;
