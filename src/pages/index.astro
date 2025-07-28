@@ -95,6 +95,21 @@ among other things
                 top 0.6s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.2s ease-in-out;
   }
+  
+  /* Visual feedback when dragging */
+  .card.dragging {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    cursor: grabbing;
+  }
+  
+  /* Improve touch targets on mobile */
+  @media (pointer: coarse) {
+    .card {
+      min-height: 44px; /* iOS minimum touch target */
+      touch-action: none; /* Prevent default touch behaviors */
+    }
+  }
 
   /* Portrait mode: move hero text to bottom */
   @media (orientation: portrait) {
@@ -116,30 +131,62 @@ among other things
   // Make cards draggable
   function makeDraggable(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
     
-    element.onmousedown = dragMouseDown;
+    // Mouse events
+    element.onmousedown = dragStart;
+    
+    // Touch events
+    element.ontouchstart = dragStart;
 
-    function dragMouseDown(e) {
+    function dragStart(e) {
       e = e || window.event;
       e.preventDefault();
+      isDragging = true;
       
       // Raise z-index when dragging starts
       highestZIndex++;
       element.style.zIndex = highestZIndex;
       
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      // Get initial position (works for both mouse and touch)
+      if (e.type === 'touchstart') {
+        pos3 = e.touches[0].clientX;
+        pos4 = e.touches[0].clientY;
+        document.ontouchend = closeDragElement;
+        document.ontouchmove = elementDrag;
+        // Prevent scrolling while dragging
+        document.body.style.overflow = 'hidden';
+      } else {
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+      
+      // Add dragging class for visual feedback
+      element.classList.add('dragging');
     }
 
     function elementDrag(e) {
+      if (!isDragging) return;
       e = e || window.event;
       e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
+      
+      let clientX, clientY;
+      
+      if (e.type === 'touchmove') {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      
+      pos1 = pos3 - clientX;
+      pos2 = pos4 - clientY;
+      pos3 = clientX;
+      pos4 = clientY;
+      
       const newTop = element.offsetTop - pos2;
       const newLeft = element.offsetLeft - pos1;
       element.style.top = newTop + "px";
@@ -153,8 +200,15 @@ among other things
     }
 
     function closeDragElement() {
+      isDragging = false;
       document.onmouseup = null;
       document.onmousemove = null;
+      document.ontouchend = null;
+      document.ontouchmove = null;
+      // Re-enable scrolling
+      document.body.style.overflow = '';
+      // Remove dragging class
+      element.classList.remove('dragging');
     }
   }
 
