@@ -14,26 +14,26 @@ among other things
 
 <Layout title="Rolando" description="Peruvian-American engineer & designer based in Philadelphia, PA.">
     <main>
-      <div style={{
+      <div class="main-container" style={{
         minHeight: "100dvh",
         display: "flex",
         flexDirection: "column",
       }}>
         {/* Hero Section */}
-        <div style={{
+        <div class="hero-section" style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
           gap: "2em",
           padding: "4em",
         }}>
-          <p
+          <p class="hero-text"
             style={{
               textAlign: "left",
               fontSize: "var(--font-size-hero2)",
               lineHeight: "1.25",
               fontFamily: "'Playfair Display', serif",
-              filter: "drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3))",
+              filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 1.0))",
             }}
           >
             Whimsical tools<br>for everyday life
@@ -88,6 +88,25 @@ among other things
     gap: 1em;
     line-height: 1.5;
   }
+  
+  /* Smooth position transitions when repositioning */
+  .card.transitioning {
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.2s ease-in-out;
+  }
+
+  /* Portrait mode: move hero text to bottom */
+  @media (orientation: portrait) {
+    .main-container {
+      justify-content: flex-end !important;
+    }
+    
+    .hero-section {
+      order: 2;
+      padding-bottom: 2em !important;
+    }
+  }
 </style>
 
 <script>
@@ -141,15 +160,29 @@ among other things
 
   // Get safe area boundaries
   function getSafeArea() {
-    const heroSection = document.querySelector('div[style*="padding: 4em"]');
-    const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 300;
+    const isPortrait = window.innerHeight > window.innerWidth;
+    const heroSection = document.querySelector('.hero-section');
     const padding = 20;
+    
+    let minY, maxY;
+    
+    if (isPortrait) {
+      // In portrait mode, hero text is at bottom, so use full height minus hero
+      const heroHeight = heroSection ? heroSection.offsetHeight : 200;
+      minY = padding;
+      maxY = window.innerHeight - heroHeight - padding;
+    } else {
+      // In landscape mode, hero text is at top
+      const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 300;
+      minY = heroBottom + padding;
+      maxY = window.innerHeight - padding;
+    }
     
     return {
       minX: padding,
       maxX: window.innerWidth - padding,
-      minY: heroBottom + padding,
-      maxY: window.innerHeight - padding
+      minY: minY,
+      maxY: maxY
     };
   }
 
@@ -217,9 +250,14 @@ among other things
   }
 
   // Position all cards randomly without overlap
-  function positionCards() {
+  function positionCards(animate = false) {
     const cards = document.querySelectorAll('.card');
     const placedCards = [];
+    
+    // Add transition class if animating
+    if (animate) {
+      cards.forEach(card => card.classList.add('transitioning'));
+    }
     
     cards.forEach((card, index) => {
       // If card has been manually moved, check if it's still visible
@@ -259,6 +297,13 @@ among other things
         placedCards.push({ card, rect: position.rect });
       }
     });
+    
+    // Remove transition class after animation completes
+    if (animate) {
+      setTimeout(() => {
+        cards.forEach(card => card.classList.remove('transitioning'));
+      }, 600);
+    }
   }
 
   // Initialize draggable cards and position them
@@ -275,7 +320,7 @@ among other things
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      positionCards();
+      positionCards(true); // animate on resize
     }, 250);
   });
 </script>
