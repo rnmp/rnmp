@@ -26,21 +26,57 @@ const { title, description } = Astro.props;
       gtag('config', 'G-DXECZ38X2P');
     </script>
   </head>
-  <body class="jugendreisen">
+  <body>
     <slot />
+    <script>
+      // Progressive background image loading
+      const img = new Image();
+      img.onload = function() {
+        // Update the background image to the full version
+        const style = document.createElement('style');
+        style.textContent = `
+          body::before {
+            background-image: url('${this.src}');
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // Add class to trigger the transition
+        document.body.classList.add('background-loaded');
+      };
+      
+      // Start loading the full image
+      img.src = '/background.png';
+    </script>
   </body>
 </html>
 
 <style is:global>
-  @font-face {
-    font-family: 'Jugendreisen';
-    src: url('/fonts/Jugendreisen-Small.woff2') format('woff2'),
-         url('/fonts/Jugendreisen-Small.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 
   body {
-    font-family: 'Jugendreisen', system-ui, -apple-system, sans-serif;
+    font-family: 'Rubik', sans-serif;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAAsTAAALEwEAmpwYAAAECElEQVR4nE3M+U/bZgDGcf8pIyG+/fqIXx+vr9iJncMk5E5IQhIgMI40hYaWe1AoK/RaR9Widu3WSkWTJm3rnzgl/WXSV89vnwd7cfr55vzu3eVfv1398+nZt9+ffft0/e/Hp3/fnv/5+viPp7tvT7aud5aOB/VRM+yHbjmhBhAgjhBiMwR29vDm54Pb5ycfX599eXP+9e3F3bvzu3ePv9789PnF/vsnO68PNy63+weD2rARdkO37GqBwn/HJDbeuji4f3U6fvVk783Vwe3zo/cvjz68OvrwfP/26e6vZ6PrvbWzUffhcnWjkeuEbtHVfIVHgBTwCImtLe0OVw8fbJzu37s82b4+G7+42H11ufvLkwcvz0ZXhxvn45XDzfZ2v7xayy6EiYKrplReB6RAREis1Vjrt4dr/Z3hYG/nx+NHm6cHw8dH9y6Ohuf7G6e7g4NRb7zW3Fws9ivpetaZS6iewmuA5Ce4ON+qV3qdxupyZ3O9d3+4PN4ePBqv7Y9X93dWHo56OxutreXqYCHfLvrltJ1xlAQE6hQTWCZTKszVq6V2q9bvNQeD9vp6d2urNxr2Rlvd4Xp7faU+WCx167l6IVnwTd+CFgSQI8AEe8lcOl3Ih+XyfKNRbndq3X5zaaU1GLQGKwsrS/X+YrnTLDRK6WLOzSaRZ8hGnIuzBIdHCMyyk56XDvwwzM4X85Vqsd4sN9vV9mK106m0W6Vmo1Cr5Er5VBjYfkKzdUmTWIklWDyCY7rhWLbnuX7gZ3KZsBAWSvlidb5Sm6/UCpXqXKmUK+SDXMYNPNO1FEMVFYERaJyZYA1ZpuU4jud5qSAVZNOZuWyukJubnxTmM7mcn057qaSdsHVTl1WZjwMaUDgdm2DdMgzbshKJhOt5yVQylfb9TBBkgyDj++lkMuW6nu3YyESKBiVZBAJLcSROzUZwTNVNZFimaVu24zgJ1014npv8nptwHduxTNNAuqoqMpQEEbCAphgiRs5Gp1hHFjIsw7JM27ImJ5bjTNa2TdNECGmaqkAoS5LE8zzLcBTJ4DgZjeKYopsaMnVk6oaJTAOZhjEJIVPXkabpClRhHMZFSQSCwHKAolmCpGdxMjpLYFAzFN1QkaEhNE3XkK4iTdVVRYWyIkuyJEwkzwJAsSxBMzGSjuJkJEZgcU2XNR1O0qCuQU2FmiKrMK7IEoyLcQmIAifwDAAUxxEMg1PMLElHCTKCk5ioqJI6TVEkBUpQlqAsypIQF3lJ4ESe4QENOJJlCYbFaWaWoqMkHSGoGYLCAIQAyrws83KclyUgiUASOZFnBfA/xuAME/suKTpC0RGSmiEpjI5LjCROEgVG5Gke0DygAEuyzNTQMZqeGmrKqBmKnkb9QNH/AZMOTwALTjQvAAAAAElFTkSuQmCC');
+    background-size: cover;
+    background-position: center left;
+    background-repeat: no-repeat;
+    filter: blur(20px);
+    z-index: -1;
+    transition: filter 0.3s ease-out;
+  }
+  
+  body.background-loaded::before {
+    filter: blur(0px);
   }
 </style>

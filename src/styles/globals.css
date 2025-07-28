@@ -2,7 +2,7 @@
   /* 🪄 Numbers */
   --header-height: 64vh;
   --font-size-hero: 72px;
-  --font-size-hero2: 48px;
+  --font-size-hero2: 72px;
   --font-size-headline: 32px;
   --font-size-body: 24px;
   --font-size-button: 24px;
@@ -14,7 +14,7 @@
 
   --grid-template-hero: repeat(5, minmax(20vw, 1fr));
 
-  --dimension-logo: 88px;
+  --dimension-logo: 120px;
 
   --breakpoint-phone: 480px;
   --breakpoint-tablet: 1200px;
@@ -42,6 +42,10 @@ body {
 body {
   color: var(--body-foreground-color);
   background: var(--body-background-color);
+}
+
+main {
+  max-width: 800px;
 }
 
 a {

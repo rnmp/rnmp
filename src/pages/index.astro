@@ -1,8 +1,280 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HomePage from '../components/HomePage';
+
+const Content = {
+  tagline: `
+Whimsical software,  
+among other things
+  `,
+  seoDescription:
+    "Peruvian-American engineer & designer based in Philadelphia, PA.",
+};
 ---
 
 <Layout title="Rolando" description="Peruvian-American engineer & designer based in Philadelphia, PA.">
-  <HomePage client:load />
+    <main>
+      <div style={{
+        minHeight: "100dvh",
+        display: "flex",
+        flexDirection: "column",
+      }}>
+        {/* Hero Section */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "2em",
+          padding: "4em",
+        }}>
+          <p
+            style={{
+              textAlign: "left",
+              fontSize: "var(--font-size-hero2)",
+              lineHeight: "1.25",
+              fontFamily: "'Playfair Display', serif",
+              filter: "drop-shadow(0 8px 32px rgba(0, 0, 0, 0.3))",
+            }}
+          >
+            Whimsical tools<br>for everyday life
+          </p>
+        </div>
+
+        <div class="card" style={{ width: "320px"}}>
+          <img src="/bleep_icon.png" alt="Bleep’s icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
+          <p style={{ margin: 0, lineHeight: 1.4 }}>
+          Get <strong>Bleep</strong> helps you build an idea palace. Save your bookmarks, notes, and inspiration in a visual and memorable way.
+          </p>
+        </div>
+
+        <div class="card" style={{ width: "320px"}}>
+          <img src="/flow_icon.png" alt="Flow’s icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
+          <p style={{ margin: 0, lineHeight: 1.4 }}>
+          <strong>Flow</strong> is a casual money tracker that helps you understand your spending habits without the hassle of budgeting. 
+          </p>
+        </div>
+
+        <div class="card" style={{ width: "320px"}}>
+          <img src="/avatar.png" alt="Rolando’s avatar" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
+          <p style={{ margin: 0, lineHeight: 1.4 }}>
+          <strong>Rolando</strong> is an Engineer Manager during the day and an indie developer at night. 
+          </p>
+        </div>
+
+        <div class="card" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1em" }}>
+          
+          <svg aria-label="Threads" style="width: 32px; height: 32px;" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg"><path class="x19hqcy" d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0132 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.788C154.894 45.8136 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 27.974C147.036 9.60668 125.202 0.195148 97.0695 0H96.9569C68.8816 0.19447 47.2921 9.6418 32.7883 28.0793C19.8819 44.4864 13.2244 67.3157 13.0007 95.9325L13 96L13.0007 96.0675C13.2244 124.684 19.8819 147.514 32.7883 163.921C47.2921 182.358 68.8816 191.806 96.9569 192H97.0695C122.03 191.827 139.624 185.292 154.118 170.811C173.081 151.866 172.51 128.119 166.26 113.541C161.776 103.087 153.227 94.5962 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z" fill="currentColor"></path></svg>
+<svg xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 462.799"><path fill-rule="nonzero" d="M403.229 0h78.506L310.219 196.04 512 462.799H354.002L230.261 301.007 88.669 462.799h-78.56l183.455-209.683L0 0h161.999l111.856 147.88L403.229 0zm-27.556 415.805h43.505L138.363 44.527h-46.68l283.99 371.278z" fill="currentColor" /></svg>
+
+        </div>
+      </div>
+    </main>
 </Layout>
+
+<style>
+  .card {
+    position: absolute;
+    padding: 1.5em;
+    background-color: rgba(20, 20, 30, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    color: white;
+    cursor: move;
+    user-select: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  let highestZIndex = 10;
+  let cardPositions = new Map();
+
+  // Make cards draggable
+  function makeDraggable(element) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    
+    element.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      
+      // Raise z-index when dragging starts
+      highestZIndex++;
+      element.style.zIndex = highestZIndex;
+      
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      const newTop = element.offsetTop - pos2;
+      const newLeft = element.offsetLeft - pos1;
+      element.style.top = newTop + "px";
+      element.style.left = newLeft + "px";
+      
+      // Store position relative to viewport
+      cardPositions.set(element.id, {
+        top: newTop,
+        left: newLeft
+      });
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
+
+  // Get safe area boundaries
+  function getSafeArea() {
+    const heroSection = document.querySelector('div[style*="padding: 4em"]');
+    const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 300;
+    const padding = 20;
+    
+    return {
+      minX: padding,
+      maxX: window.innerWidth - padding,
+      minY: heroBottom + padding,
+      maxY: window.innerHeight - padding
+    };
+  }
+
+  // Check if two rectangles overlap
+  function doRectsOverlap(rect1, rect2) {
+    return !(rect1.right < rect2.left || 
+             rect1.left > rect2.right || 
+             rect1.bottom < rect2.top || 
+             rect1.top > rect2.bottom);
+  }
+
+  // Find a non-overlapping position for a card
+  function findNonOverlappingPosition(card, placedCards, cardIndex) {
+    const safeArea = getSafeArea();
+    const cardRect = card.getBoundingClientRect();
+    const cardWidth = cardRect.width || 320;
+    const cardHeight = cardRect.height || 150;
+    const padding = 20; // padding from edges
+    
+    // Try random positions until we find one that doesn't overlap
+    const maxAttempts = 200;
+    
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      // Random position within safe area
+      const x = Math.random() * (safeArea.maxX - safeArea.minX - cardWidth - padding * 2) + safeArea.minX + padding;
+      const y = Math.random() * (safeArea.maxY - safeArea.minY - cardHeight - padding * 2) + safeArea.minY + padding;
+      
+      const newRect = {
+        left: x,
+        top: y,
+        right: x + cardWidth,
+        bottom: y + cardHeight
+      };
+      
+      // Check for overlaps
+      let overlaps = false;
+      for (const placedCard of placedCards) {
+        if (doRectsOverlap(newRect, placedCard.rect)) {
+          overlaps = true;
+          break;
+        }
+      }
+      
+      if (!overlaps) {
+        return { x, y, rect: newRect };
+      }
+    }
+    
+    // Fallback: grid placement if random fails
+    const cols = Math.floor((safeArea.maxX - safeArea.minX) / (cardWidth + padding));
+    const col = cardIndex % cols;
+    const row = Math.floor(cardIndex / cols);
+    
+    return {
+      x: safeArea.minX + padding + col * (cardWidth + padding),
+      y: safeArea.minY + padding + row * (cardHeight + padding),
+      rect: {
+        left: safeArea.minX + padding + col * (cardWidth + padding),
+        top: safeArea.minY + padding + row * (cardHeight + padding),
+        right: safeArea.minX + padding + col * (cardWidth + padding) + cardWidth,
+        bottom: safeArea.minY + padding + row * (cardHeight + padding) + cardHeight
+      }
+    };
+  }
+
+  // Position all cards randomly without overlap
+  function positionCards() {
+    const cards = document.querySelectorAll('.card');
+    const placedCards = [];
+    
+    cards.forEach((card, index) => {
+      // If card has been manually moved, check if it's still visible
+      if (cardPositions.has(card.id)) {
+        const pos = cardPositions.get(card.id);
+        const safeArea = getSafeArea();
+        const cardRect = card.getBoundingClientRect();
+        
+        // Check if card is out of bounds
+        if (pos.left < 0 || pos.top < safeArea.minY || 
+            pos.left + cardRect.width > window.innerWidth || 
+            pos.top + cardRect.height > window.innerHeight) {
+          // Reposition if out of bounds
+          const position = findNonOverlappingPosition(card, placedCards, index);
+          card.style.left = position.x + 'px';
+          card.style.top = position.y + 'px';
+          placedCards.push({ card, rect: position.rect });
+          cardPositions.delete(card.id);
+        } else {
+          // Keep current position
+          placedCards.push({
+            card,
+            rect: {
+              left: pos.left,
+              top: pos.top,
+              right: pos.left + cardRect.width,
+              bottom: pos.top + cardRect.height
+            }
+          });
+        }
+      } else {
+        // Initial random position
+        const position = findNonOverlappingPosition(card, placedCards, index);
+        card.style.left = position.x + 'px';
+        card.style.top = position.y + 'px';
+        card.style.zIndex = highestZIndex + index;
+        placedCards.push({ card, rect: position.rect });
+      }
+    });
+  }
+
+  // Initialize draggable cards and position them
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      makeDraggable(card);
+    });
+    positionCards();
+  });
+
+  // Reposition cards on resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      positionCards();
+    }, 250);
+  });
+</script>
