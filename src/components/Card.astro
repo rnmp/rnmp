@@ -57,10 +57,15 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     cursor: grabbing;
   }
   
-  /* Improve touch targets on mobile */
-  @media (pointer: coarse) {
+  /* Mobile styles */
+  @media (max-width: 768px) {
     .card {
       min-height: 44px; /* iOS minimum touch target */
+    }
+    
+    /* Social card stays on top on mobile */
+    .social-card {
+      z-index: 1000 !important;
     }
   }
   
@@ -228,8 +233,56 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     const cardWidth = cardRect.width || 320;
     const cardHeight = cardRect.height || 150;
     const padding = 20; // padding from edges
+    const isMobile = window.innerWidth <= 768;
     
-    // Try random positions until we find one that doesn't overlap
+    // On mobile, use vertical stacking with random horizontal offset
+    if (isMobile) {
+      // Special handling for social card - position it top right
+      if (card.classList.contains('social-card')) {
+        const x = window.innerWidth - cardWidth - padding;
+        const y = safeArea.minY + padding;
+        return {
+          x: x,
+          y: y,
+          rect: {
+            left: x,
+            top: y,
+            right: x + cardWidth,
+            bottom: y + cardHeight
+          }
+        };
+      }
+      
+      const spacing = 20; // space between cards
+      let currentY = safeArea.minY + padding;
+      
+      // Calculate Y position based on previous cards (excluding social card)
+      for (const placedCard of placedCards) {
+        if (!placedCard.card.classList.contains('social-card')) {
+          currentY = Math.max(currentY, placedCard.rect.bottom + spacing);
+        }
+      }
+      
+      // Add more varied random horizontal offset
+      const maxOffset = window.innerWidth - cardWidth - padding;
+      // Use sine wave for more interesting distribution
+      const randomFactor = Math.random();
+      const sineOffset = Math.sin(randomFactor * Math.PI * 2) * 0.3 + 0.5;
+      const randomOffset = padding + (sineOffset * (maxOffset - padding));
+      
+      return {
+        x: randomOffset,
+        y: currentY,
+        rect: {
+          left: randomOffset,
+          top: currentY,
+          right: randomOffset + cardWidth,
+          bottom: currentY + cardHeight
+        }
+      };
+    }
+    
+    // Desktop: Try random positions until we find one that doesn't overlap
     const maxAttempts = 200;
     
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
