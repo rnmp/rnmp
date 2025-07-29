@@ -1,14 +1,13 @@
 ---
 export interface Props {
   title: string;
-  description: string;
 }
 
-const { title, description } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <p class="card-oneliner">
-  <strong>{title}</strong><span class="description"> · {description}</span>
+  <strong>{title}</strong><span class="description"> · <slot /></span>
 </p>
 
 <style>
