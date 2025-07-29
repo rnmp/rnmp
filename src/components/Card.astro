@@ -61,7 +61,6 @@ const additionalProps = href ? { href, target: '_blank' } : {};
   @media (pointer: coarse) {
     .card {
       min-height: 44px; /* iOS minimum touch target */
-      touch-action: none; /* Prevent default touch behaviors */
     }
   }
   
@@ -102,7 +101,10 @@ const additionalProps = href ? { href, target: '_blank' } : {};
 
     function dragStart(e) {
       e = e || window.event;
-      e.preventDefault();
+      // Don't prevent default immediately on touch to allow clicks
+      if (e.type !== 'touchstart') {
+        e.preventDefault();
+      }
       isDragging = true;
       hasMoved = false;
       
@@ -132,7 +134,6 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     function elementDrag(e) {
       if (!isDragging) return;
       e = e || window.event;
-      e.preventDefault();
       
       let clientX, clientY;
       
@@ -150,6 +151,8 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       );
       if (moveDistance > 5) {
         hasMoved = true;
+        // Only prevent default once we know it's a drag
+        e.preventDefault();
       }
       
       pos1 = pos3 - clientX;
