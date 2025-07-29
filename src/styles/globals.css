@@ -1,27 +1,6 @@
 :root {
-  /* 🪄 Numbers */
-  --header-height: 64vh;
-  --font-size-hero2: 72px;
-  --font-size-headline: 32px;
-  --font-size-body: 24px;
-  --font-size-button: 24px;
-
-  --content-padding: 0em;
-
-  --modal-header-height: 80px;
-  --modal-cover-height: 100%;
-
-  --grid-template-hero: repeat(5, minmax(20vw, 1fr));
-
-  --dimension-logo: 120px;
-
-  --breakpoint-phone: 480px;
-  --breakpoint-tablet: 1200px;
-
-  /* Colors */
   --body-foreground-color: white;
   --body-background-color: black;
-  --modal-background-color: #1e192d;
 }
 
 * {
@@ -47,34 +26,4 @@ a {
   color: inherit;
   text-decoration-thickness: 0.5px;
   text-decoration-style: wavy;
-}
-
-@media (max-width: 1200px) {
-  :root {
-    --font-size-hero2: 72px;
-
-    --content-padding: 1em;
-  }
-}
-
-@media (max-width: 600px) {
-  :root {
-    --header-height: 32vh;
-
-    --font-size-hero2: 32px;
-    --font-size-headline: 24px;
-    --font-size-body: 16px;
-    --font-size-button: 16px;
-
-    --content-padding: 1em;
-
-    --modal-header-height: 60px;
-    --modal-cover-height: 100%;
-
-    /*
-    --grid-template-hero: repeat(2, minmax(20vw, 1fr));
-    */
-
-    --dimension-logo: 60px;
-  }
 }

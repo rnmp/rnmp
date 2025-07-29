@@ -1,0 +1,351 @@
+---
+export interface Props {
+  href?: string;
+  style?: any;
+  class?: string;
+}
+
+const { href, style, class: className = '' } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const additionalProps = href ? { href, target: '_blank' } : {};
+---
+
+<Tag class={`card ${className}`} style={style} {...additionalProps}>
+  <slot />
+</Tag>
+
+<style>
+  .card {
+    position: absolute;
+    padding: 1.5em;
+    background-color: rgba(20, 20, 30, 0.4);
+    backdrop-filter: blur(12px);
+    border-radius: 32px;
+    color: white;
+    cursor: default;
+    user-select: none;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    line-height: 1.5;
+  }
+  
+  /* Style anchor cards the same as div cards */
+  a.card {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  a.card:hover {
+    text-decoration: none;
+  }
+  
+  /* Smooth position transitions when repositioning */
+  .card.transitioning {
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                top 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.2s ease-in-out;
+  }
+  
+  /* Visual feedback when dragging */
+  .card.dragging {
+    transform: scale(1.05);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 12px 40px rgba(0, 0, 0, 0.4);
+    cursor: grabbing;
+  }
+  
+  /* Improve touch targets on mobile */
+  @media (pointer: coarse) {
+    .card {
+      min-height: 44px; /* iOS minimum touch target */
+      touch-action: none; /* Prevent default touch behaviors */
+    }
+  }
+  
+  /* Special styling for social card */
+  .social-card {
+    padding: 1.5em 1em;
+  }
+</style>
+
+<script is:global>
+
+  let highestZIndex = 10;
+  let cardPositions = new Map();
+
+  // Make cards draggable
+  function makeDraggable(element) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+    let hasMoved = false;
+    let startX = 0, startY = 0;
+    
+    // Mouse events
+    element.onmousedown = dragStart;
+    
+    // Touch events
+    element.ontouchstart = dragStart;
+    
+    // Prevent default click on anchor cards if dragged
+    if (element.tagName === 'A') {
+      element.addEventListener('click', function(e) {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+          hasMoved = false;
+        }
+      }, true);
+    }
+
+    function dragStart(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      hasMoved = false;
+      
+      // Raise z-index when dragging starts
+      highestZIndex++;
+      element.style.zIndex = highestZIndex;
+      
+      // Get initial position (works for both mouse and touch)
+      if (e.type === 'touchstart') {
+        startX = pos3 = e.touches[0].clientX;
+        startY = pos4 = e.touches[0].clientY;
+        document.ontouchend = closeDragElement;
+        document.ontouchmove = elementDrag;
+        // Prevent scrolling while dragging
+        document.body.style.overflow = 'hidden';
+      } else {
+        startX = pos3 = e.clientX;
+        startY = pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+      
+      // Add dragging class for visual feedback
+      element.classList.add('dragging');
+    }
+
+    function elementDrag(e) {
+      if (!isDragging) return;
+      e = e || window.event;
+      e.preventDefault();
+      
+      let clientX, clientY;
+      
+      if (e.type === 'touchmove') {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      
+      // Check if we've moved more than 5 pixels (threshold for drag vs click)
+      const moveDistance = Math.sqrt(
+        Math.pow(clientX - startX, 2) + Math.pow(clientY - startY, 2)
+      );
+      if (moveDistance > 5) {
+        hasMoved = true;
+      }
+      
+      pos1 = pos3 - clientX;
+      pos2 = pos4 - clientY;
+      pos3 = clientX;
+      pos4 = clientY;
+      
+      const newTop = element.offsetTop - pos2;
+      const newLeft = element.offsetLeft - pos1;
+      element.style.top = newTop + "px";
+      element.style.left = newLeft + "px";
+      
+      // Store position relative to viewport
+      cardPositions.set(element.id, {
+        top: newTop,
+        left: newLeft
+      });
+    }
+
+    function closeDragElement() {
+      isDragging = false;
+      document.onmouseup = null;
+      document.onmousemove = null;
+      document.ontouchend = null;
+      document.ontouchmove = null;
+      // Re-enable scrolling
+      document.body.style.overflow = '';
+      // Remove dragging class
+      element.classList.remove('dragging');
+    }
+  }
+
+  // Get safe area boundaries
+  function getSafeArea() {
+    const isPortrait = window.innerHeight > window.innerWidth;
+    const heroSection = document.querySelector('.hero-section');
+    const padding = 20;
+    
+    let minY, maxY;
+    
+    if (isPortrait) {
+      // In portrait mode, hero text is at bottom, so use full height minus hero
+      const heroHeight = heroSection ? heroSection.offsetHeight : 200;
+      minY = padding;
+      maxY = window.innerHeight - heroHeight - padding;
+    } else {
+      // In landscape mode, hero text is at top
+      const heroBottom = heroSection ? heroSection.offsetTop + heroSection.offsetHeight : 300;
+      minY = heroBottom + padding;
+      maxY = window.innerHeight - padding;
+    }
+    
+    return {
+      minX: padding,
+      maxX: window.innerWidth - padding,
+      minY: minY,
+      maxY: maxY
+    };
+  }
+
+  // Check if two rectangles overlap (with optional margin)
+  function doRectsOverlap(rect1, rect2, margin = 0) {
+    return !(rect1.right + margin < rect2.left - margin || 
+             rect1.left - margin > rect2.right + margin || 
+             rect1.bottom + margin < rect2.top - margin || 
+             rect1.top - margin > rect2.bottom + margin);
+  }
+
+  // Find a non-overlapping position for a card
+  function findNonOverlappingPosition(card, placedCards, cardIndex) {
+    const safeArea = getSafeArea();
+    const cardRect = card.getBoundingClientRect();
+    const cardWidth = cardRect.width || 320;
+    const cardHeight = cardRect.height || 150;
+    const padding = 20; // padding from edges
+    
+    // Try random positions until we find one that doesn't overlap
+    const maxAttempts = 200;
+    
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      // Random position within safe area
+      const x = Math.random() * (safeArea.maxX - safeArea.minX - cardWidth - padding * 2) + safeArea.minX + padding;
+      const y = Math.random() * (safeArea.maxY - safeArea.minY - cardHeight - padding * 2) + safeArea.minY + padding;
+      
+      const newRect = {
+        left: x,
+        top: y,
+        right: x + cardWidth,
+        bottom: y + cardHeight
+      };
+      
+      // Check for overlaps with a soft margin
+      let overlaps = false;
+      const softMargin = 30; // minimum space between cards
+      for (const placedCard of placedCards) {
+        if (doRectsOverlap(newRect, placedCard.rect, softMargin)) {
+          overlaps = true;
+          break;
+        }
+      }
+      
+      if (!overlaps) {
+        return { x, y, rect: newRect };
+      }
+    }
+    
+    // Fallback: grid placement if random fails
+    const cols = Math.floor((safeArea.maxX - safeArea.minX) / (cardWidth + padding));
+    const col = cardIndex % cols;
+    const row = Math.floor(cardIndex / cols);
+    
+    return {
+      x: safeArea.minX + padding + col * (cardWidth + padding),
+      y: safeArea.minY + padding + row * (cardHeight + padding),
+      rect: {
+        left: safeArea.minX + padding + col * (cardWidth + padding),
+        top: safeArea.minY + padding + row * (cardHeight + padding),
+        right: safeArea.minX + padding + col * (cardWidth + padding) + cardWidth,
+        bottom: safeArea.minY + padding + row * (cardHeight + padding) + cardHeight
+      }
+    };
+  }
+
+  // Position all cards randomly without overlap
+  function positionCards(animate = false) {
+    const cards = document.querySelectorAll('.card');
+    const placedCards = [];
+    
+    // Add transition class if animating
+    if (animate) {
+      cards.forEach(card => card.classList.add('transitioning'));
+    }
+    
+    cards.forEach((card, index) => {
+      // If card has been manually moved, check if it's still visible
+      if (cardPositions.has(card.id)) {
+        const pos = cardPositions.get(card.id);
+        const safeArea = getSafeArea();
+        const cardRect = card.getBoundingClientRect();
+        
+        // Check if card is out of bounds
+        if (pos.left < 0 || pos.top < safeArea.minY || 
+            pos.left + cardRect.width > window.innerWidth || 
+            pos.top + cardRect.height > window.innerHeight) {
+          // Reposition if out of bounds
+          const position = findNonOverlappingPosition(card, placedCards, index);
+          card.style.left = position.x + 'px';
+          card.style.top = position.y + 'px';
+          placedCards.push({ card, rect: position.rect });
+          cardPositions.delete(card.id);
+        } else {
+          // Keep current position
+          placedCards.push({
+            card,
+            rect: {
+              left: pos.left,
+              top: pos.top,
+              right: pos.left + cardRect.width,
+              bottom: pos.top + cardRect.height
+            }
+          });
+        }
+      } else {
+        // Initial random position
+        const position = findNonOverlappingPosition(card, placedCards, index);
+        card.style.left = position.x + 'px';
+        card.style.top = position.y + 'px';
+        card.style.zIndex = highestZIndex + index;
+        placedCards.push({ card, rect: position.rect });
+      }
+    });
+    
+    // Remove transition class after animation completes
+    if (animate) {
+      setTimeout(() => {
+        cards.forEach(card => card.classList.remove('transitioning'));
+      }, 600);
+    }
+  }
+
+  // Initialize draggable cards and position them
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      makeDraggable(card);
+    });
+    positionCards();
+  });
+
+  // Reposition cards on resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      positionCards(true); // animate on resize
+    }, 250);
+  });
+
+</script>
