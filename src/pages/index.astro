@@ -31,12 +31,6 @@ among other things
         }}>
           <p class="hero-text"
             style={{
-              textAlign: "left",
-              fontSize: "var(--font-size-hero2)",
-              lineHeight: "1.25",
-              fontFamily: "'Jugendreisen', system-ui, -apple-system, sans-serif",
-              // filter: "drop-shadow(0 8px 16px rgba(0, 0, 0, 1.0))",
-              textShadow: "0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.1)",
             }}
           >
             Whimsical tools<br>for everyday life
@@ -46,14 +40,14 @@ among other things
         <a class="card" href="https://bleep.is/" target="_blank" style={{ width: "280px"}}>
           <img src="/bleep_icon.png" alt="Bleep’s icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <p style={{ margin: 0, lineHeight: 1.4 }}>
-          <strong>Bleep</strong> · Organize your ideas visually. Available on iPhone, iPad, and Mac.
+            <strong>Bleep</strong> · Organize your ideas visually on iOS and macOS.
           </p>
         </a>
 
         <a class="card" href="https://testflight.apple.com/join/pumSW2WF" style={{ width: "300px"}}>
           <img src="/flow_icon.png" alt="Flow’s icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <p style={{ margin: 0, lineHeight: 1.4 }}>
-          <strong>Flow</strong> · Casual money tracker. Currently in the works. Join the TestFlight on iPhone.
+            <strong>Flow</strong> · Casual money tracker. Join the TestFlight for iPhone.
           </p>
         </a>
 
@@ -64,7 +58,7 @@ among other things
           </p>
         </div>
 
-        <div class="card social-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto", padding: "1.5em" }}>
+        <div class="card social-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto"}}>
           <ThreadsIcon size={28} />
           <XIcon size={28} />
         </div>
@@ -73,16 +67,28 @@ among other things
 </Layout>
 
 <style>
+  .hero-text {
+    font-size: var(--font-size-hero2);
+    font-weight: 300;
+    line-height: 1.25;
+    font-family: 'Jugendreisen', system-ui, -apple-system, sans-serif;
+    color: white;
+    filter: drop-shadow(0 8px 16px rgba(23, 29, 35, 1.0));
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 
+                 0 0 40px rgba(255, 255, 255, 0.3), 
+                 0 0 60px rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+  }
   .card {
     position: absolute;
     padding: 1.5em;
-    background-color: rgba(20, 20, 30, 0.7);
+    background-color: rgba(20, 20, 30, 0.4);
     backdrop-filter: blur(12px);
-    border-radius: 20px;
+    border-radius: 32px;
     color: white;
     cursor: default;
     user-select: none;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -126,8 +132,7 @@ among other things
   /* Special styling for social card */
   .social-card {
     width: auto !important;
-    min-width: 80px;
-    max-width: 120px;
+    padding: 1.5em 1em;
   }
   
   /* Stagger icon animations on card hover */

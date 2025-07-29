@@ -1,7 +1,6 @@
 :root {
   /* 🪄 Numbers */
   --header-height: 64vh;
-  --font-size-hero: 72px;
   --font-size-hero2: 72px;
   --font-size-headline: 32px;
   --font-size-body: 24px;
@@ -56,8 +55,7 @@ a {
 
 @media (max-width: 1200px) {
   :root {
-    --font-size-hero: 48px;
-    --font-size-hero2: 32px;
+    --font-size-hero2: 72px;
 
     --content-padding: 1em;
   }
@@ -67,8 +65,7 @@ a {
   :root {
     --header-height: 32vh;
 
-    --font-size-hero: 32px;
-    --font-size-hero2: 20px;
+    --font-size-hero2: 32px;
     --font-size-headline: 24px;
     --font-size-body: 16px;
     --font-size-button: 16px;
