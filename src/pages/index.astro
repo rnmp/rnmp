@@ -23,18 +23,24 @@ among other things
         </header>
 
         <Card href="https://bleep.is/" target="_blank" class="card-animate" style={{ width: "280px"}} id="card-bleep">
-          <img src="/bleep_icon.png" alt="Bleep's icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
+          <img src="/bleep_icon.png" alt="Bleep's icon" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
             <CardOneliner title="Bleep">Organize your ideas visually on iOS and macOS.</CardOneliner>
         </Card>
 
         <Card href="https://testflight.apple.com/join/pumSW2WF" class="card-animate" style={{ width: "300px"}} id="card-flow">
-          <img src="/flow_icon.png" alt="Flow's icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
+        <img src="/flow_icon.png" alt="Flow's icon" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em" }} />
           <CardOneliner title="Flow">Casual money tracker. <br/>Join the TestFlight for iPhone.</CardOneliner>
         </Card>
 
-        <Card class="card-animate" style={{ width: "300px"}} id="card-about">
-          <img src="/avatar.png" alt="Rolando's avatar" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
-          <CardOneliner title="About me">I'm Rolando. Jack of all trades, master of some.</CardOneliner>
+        <Card class="card-animate" style={{ width: "300px"}} id="card-about" expandable={true}>
+          <img src="/avatar.png" alt="Rolando's avatar" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
+          <CardOneliner title="About me">👋 I’m Rolando. Jack of all trades, master of some.</CardOneliner>
+          <Fragment slot="expandable">
+          <p>
+          I design & build apps that help you slow down and have fun with your thoughts. I’m  based in Philly though originally from South America.
+            </p>
+            <p>When I'm not coding, I'm probably watching horror movies, playing RL, or riding Nitro at Six Flags.</p>
+          </Fragment>
         </Card>
 
         <Card class="social-card card-animate" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto"}} id="card-social">

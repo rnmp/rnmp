@@ -4,18 +4,37 @@ export interface Props {
   style?: any;
   class?: string;
   id?: string;
+  expandable?: boolean;
 }
 
-const { href, style, class: className = '', id } = Astro.props;
+const { href, style, class: className = '', id, expandable } = Astro.props;
 const Tag = href ? 'a' : 'div';
 const additionalProps = href ? { href, target: '_blank' } : {};
 ---
 
-<Tag class={`card ${className}`} style={style} id={id} {...additionalProps}>
-  <slot />
+<Tag class={`card ${className} ${expandable ? 'expandable' : ''}`} style={style} id={id} {...additionalProps}>
+    <slot />
+  {expandable && (
+  <div class="expandable-content">
+  <slot name="expandable" />
+  </div>
+  )}
+  {href && (
+<svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+  )}
 </Tag>
 
 <style>
+  .arrow {
+    position: absolute;
+    top: 1.25em;
+    right: 1.25em;
+    width: 1.5em;
+    height: 1.5em;
+    opacity: 0.6;
+    transition: opacity 0.2s ease-in-out;
+  }
+
   .card {
     position: absolute;
     padding: 1.5em 1.5em 1.25em;
@@ -29,7 +48,6 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
-    gap: 1em;
     line-height: 1.5;
   }
   
@@ -74,12 +92,51 @@ const additionalProps = href ? { href, target: '_blank' } : {};
   .social-card {
     padding: 1.25em 1em;
   }
+
+  /* Expandable card styles */
+  .card.expandable {
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+                opacity 0.3s ease-out,
+                padding 0.3s ease-out;
+    padding: 0;
+    font-size: 0.9em;
+  }
+
+  .card.expanded .expandable-content {
+    max-height: 500px; /* Adjust as needed */
+    opacity: 1;
+  }
+
+  /* Prevent expansion when dragging */
+  .card.expandable.dragging {
+    pointer-events: none;
+  }
+</style>
+
+<style is:global> 
+  .expandable-content p {
+    padding-top: 0.5em
+  }
 </style>
 
 <script is:global>
 
   let highestZIndex = 10;
   let cardPositions = new Map();
+  let cardHasMoved = new Map();
 
   // Make cards draggable
   function makeDraggable(element) {
@@ -97,10 +154,10 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     // Prevent default click on anchor cards if dragged
     if (element.tagName === 'A') {
       element.addEventListener('click', function(e) {
-        if (hasMoved) {
+        if (cardHasMoved.get(element.id)) {
           e.preventDefault();
           e.stopPropagation();
-          hasMoved = false;
+          cardHasMoved.set(element.id, false);
         }
       }, true);
     }
@@ -113,6 +170,7 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       }
       isDragging = true;
       hasMoved = false;
+      cardHasMoved.set(element.id, false);
       
       // Raise z-index when dragging starts
       highestZIndex++;
@@ -122,14 +180,14 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       if (e.type === 'touchstart') {
         startX = pos3 = e.touches[0].clientX;
         startY = pos4 = e.touches[0].clientY;
-        document.ontouchend = closeDragElement;
+        document.ontouchend = function(evt) { closeDragElement(evt); };
         document.ontouchmove = elementDrag;
         // Prevent scrolling while dragging
         document.body.style.overflow = 'hidden';
       } else {
         startX = pos3 = e.clientX;
         startY = pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
+        document.onmouseup = function(evt) { closeDragElement(evt); };
         document.onmousemove = elementDrag;
       }
       
@@ -157,6 +215,7 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       );
       if (moveDistance > 5) {
         hasMoved = true;
+        cardHasMoved.set(element.id, true);
         // Only prevent default once we know it's a drag
         e.preventDefault();
       }
@@ -178,7 +237,7 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       });
     }
 
-    function closeDragElement() {
+    function closeDragElement(e) {
       isDragging = false;
       document.onmouseup = null;
       document.onmousemove = null;
@@ -188,6 +247,25 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       document.body.style.overflow = '';
       // Remove dragging class
       element.classList.remove('dragging');
+      
+      // If this is an expandable card and we haven't moved, toggle expansion
+      if (element.classList.contains('expandable') && !hasMoved) {
+        // Check if the click target is not a link
+        const target = e ? (e.target || e.srcElement) : null;
+        if (target && target.tagName !== 'A' && !target.closest('a')) {
+          element.classList.toggle('expanded');
+          
+          // Raise z-index when expanding
+          if (element.classList.contains('expanded')) {
+            highestZIndex++;
+            element.style.zIndex = highestZIndex;
+          }
+        }
+      }
+      
+      // Reset the movement flag
+      hasMoved = false;
+      cardHasMoved.set(element.id, false);
     }
   }
 
