@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HomePage from '../components/HomePage';
-import ThreadsIcon from '../components/ThreadsIcon.astro';
-import XIcon from '../components/XIcon.astro';
+import SocialIcon from '../components/SocialIcon.astro';
 import Card from '../components/Card.astro';
 import CardOneliner from '../components/CardOneliner.astro';
 
@@ -38,8 +37,8 @@ among other things
         </Card>
 
         <Card class="social-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto"}} id="card-social">
-          <ThreadsIcon size={28} />
-          <XIcon size={28} />
+          <SocialIcon variant="threads" size={28} />
+          <SocialIcon variant="x" size={28} />
         </Card>
     </main>
 </Layout>
