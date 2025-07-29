@@ -1,0 +1,23 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<p class="card-oneliner">
+  <strong>{title}</strong><span class="description"> · {description}</span>
+</p>
+
+<style>
+  .card-oneliner {
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .description {
+    opacity: 0.75;
+  }
+</style>
