@@ -17,16 +17,9 @@ among other things
 
 <Layout title="Rolando" description="Peruvian-American engineer & designer based in Philadelphia, PA.">
     <main>
-      <div class="main-container" style={{
-        minHeight: "100dvh",
-        display: "flex",
-        flexDirection: "column",
-      }}>
-        {/* Hero Section */}
-        <div class="hero-section" style={{
-        }}>
-            Whimsical tools<br>for everyday life
-        </div>
+        <header class="hero-section">
+          Whimsical tools<br><span style="position: relative; left: 0.1em">for everyday life</span>
+        </header>
 
         <Card href="https://bleep.is/" target="_blank" style={{ width: "280px"}}>
           <img src="/bleep_icon.png" alt="Bleep's icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
@@ -53,11 +46,15 @@ among other things
           <ThreadsIcon size={28} />
           <XIcon size={28} />
         </Card>
-      </div>
     </main>
 </Layout>
 
 <style>
+  main {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
   .hero-section {
     font-size: 72px;
     font-weight: 300;
@@ -65,10 +62,12 @@ among other things
     padding: 1em;
     font-family: 'Jugendreisen', system-ui, -apple-system, sans-serif;
     color: white;
-    filter: drop-shadow(0 8px 16px rgba(23, 29, 35, 1.0));
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 
-                 0 0 40px rgba(255, 255, 255, 0.3), 
-                 0 0 60px rgba(255, 255, 255, 0.1);
+    text-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.6), 
+      0 0 40px rgba(255, 255, 255, 0.4), 
+      0 0 60px rgba(255, 255, 255, 0.3),
+      0 0.025em 0 hsla(274, 62%, 79%, 1.0),
+      0 8px 16px hsl(210, 51%, 5%);
   }
 
   @media (max-width: 1200px) {
@@ -76,18 +75,21 @@ among other things
       font-size: 72px;
     }
   }
-  @media (max-width: 700px) {
+  @media (max-width: 756px) {
+    .hero-section {
+      font-size: 48px;
+    }
+  }
+  @media (max-width: 512px) {
     .hero-section {
       font-size: 32px;
+      text-align: center;
     }
   }
 
-
-
-  /* Portrait mode: move hero text to bottom */
   @media (orientation: portrait) {
-    .main-container {
-      justify-content: flex-end !important;
+    main {
+      justify-content: flex-end;
     }
   }
 </style>
