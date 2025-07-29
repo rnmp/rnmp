@@ -44,7 +44,8 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     cursor: default;
     user-select: none;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), 
+                box-shadow 0.2s cubic-bezier(0.19, 1, 0.22, 1);
     display: flex;
     flex-direction: column;
     line-height: 1.5;
@@ -70,9 +71,10 @@ const additionalProps = href ? { href, target: '_blank' } : {};
   
   /* Visual feedback when dragging */
   .card.dragging {
-    transform: scale(1.05);
-    box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 12px 40px rgba(0, 0, 0, 0.4);
+    transform: scale(1.08) !important;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.4), 0 16px 48px rgba(0, 0, 0, 0.5);
     cursor: grabbing;
+    z-index: 9999 !important;
   }
   
   /* Mobile styles */
@@ -153,10 +155,11 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     // Prevent default click on anchor cards if dragged
     if (element.tagName === 'A') {
       element.addEventListener('click', function(e) {
-        if (cardHasMoved.get(element.id)) {
+        // Check if this specific card has moved
+        if (cardHasMoved.get(element.id) === true) {
           e.preventDefault();
           e.stopPropagation();
-          cardHasMoved.set(element.id, false);
+          return false;
         }
       }, true);
     }
@@ -262,9 +265,17 @@ const additionalProps = href ? { href, target: '_blank' } : {};
         }
       }
       
-      // Reset the movement flag
+      // Reset the local movement flag
       hasMoved = false;
-      cardHasMoved.set(element.id, false);
+      
+      // For anchor elements, delay resetting the global flag to allow click prevention
+      if (element.tagName === 'A' && cardHasMoved.get(element.id)) {
+        setTimeout(() => {
+          cardHasMoved.set(element.id, false);
+        }, 100);
+      } else {
+        cardHasMoved.set(element.id, false);
+      }
     }
   }
 
