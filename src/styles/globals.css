@@ -43,10 +43,6 @@ body {
   background: var(--body-background-color);
 }
 
-main {
-  max-width: 800px;
-}
-
 a {
   color: inherit;
   text-decoration-thickness: 0.5px;
