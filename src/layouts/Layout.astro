@@ -82,6 +82,17 @@ const { title, description } = Astro.props;
     filter: blur(20px);
     z-index: -1;
     transition: filter 0.3s ease-out;
+    transform: scale(1.1);
+    animation: zoomOut 5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  @keyframes zoomOut {
+    from {
+      transform: scale(1.1);
+    }
+    to {
+      transform: scale(1);
+    }
   }
   
   body.background-loaded::before {
