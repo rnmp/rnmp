@@ -3,14 +3,15 @@ export interface Props {
   href?: string;
   style?: any;
   class?: string;
+  id?: string;
 }
 
-const { href, style, class: className = '' } = Astro.props;
+const { href, style, class: className = '', id } = Astro.props;
 const Tag = href ? 'a' : 'div';
 const additionalProps = href ? { href, target: '_blank' } : {};
 ---
 
-<Tag class={`card ${className}`} style={style} {...additionalProps}>
+<Tag class={`card ${className}`} style={style} id={id} {...additionalProps}>
   <slot />
 </Tag>
 

@@ -18,25 +18,26 @@ among other things
 <Layout title="Rolando" description="Peruvian-American engineer & designer based in Philadelphia, PA.">
     <main>
         <header class="hero-section">
-          Whimsical tools<br><span style="position: relative; left: 0.1em">for everyday life</span>
+          <span class="line line-1">Whimsical tools</span>
+          <span class="line line-2" style="position: relative; left: 0.1em">for everyday life</span>
         </header>
 
-        <Card href="https://bleep.is/" target="_blank" style={{ width: "280px"}} id="card-bleep">
+        <Card href="https://bleep.is/" target="_blank" class="card-animate" style={{ width: "280px"}} id="card-bleep">
           <img src="/bleep_icon.png" alt="Bleep's icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
             <CardOneliner title="Bleep">Organize your ideas visually on iOS and macOS.</CardOneliner>
         </Card>
 
-        <Card href="https://testflight.apple.com/join/pumSW2WF" style={{ width: "300px"}} id="card-flow">
+        <Card href="https://testflight.apple.com/join/pumSW2WF" class="card-animate" style={{ width: "300px"}} id="card-flow">
           <img src="/flow_icon.png" alt="Flow's icon" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <CardOneliner title="Flow">Casual money tracker. <br/>Join the TestFlight for iPhone.</CardOneliner>
         </Card>
 
-        <Card style={{ width: "300px"}} id="card-about">
+        <Card class="card-animate" style={{ width: "300px"}} id="card-about">
           <img src="/avatar.png" alt="Rolando's avatar" style={{ width: "48px", height: "auto", borderRadius: "10px" }} />
           <CardOneliner title="About me">I'm Rolando. Jack of all trades, master of some.</CardOneliner>
         </Card>
 
-        <Card class="social-card" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto"}} id="card-social">
+        <Card class="social-card card-animate" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto"}} id="card-social">
           <SocialIcon variant="threads" size={28} />
           <SocialIcon variant="x" size={28} />
         </Card>
@@ -64,6 +65,31 @@ among other things
       0 8px 16px hsl(210, 51%, 5%);
   }
 
+  .line {
+    display: block;
+    opacity: 0;
+    animation: fadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  .line-1 {
+    animation-delay: 0s;
+  }
+
+  .line-2 {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 1200px) {
     .hero-section {
       font-size: 72px;
@@ -84,6 +110,42 @@ among other things
   @media (orientation: portrait) {
     main {
       justify-content: flex-end;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Card slide up animation */
+  .card-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardFadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  #card-bleep {
+    animation-delay: 0.5s;
+  }
+
+  #card-flow {
+    animation-delay: 0.7s;
+  }
+
+  #card-about {
+    animation-delay: 0.9s;
+  }
+
+  #card-social {
+    animation-delay: 1.1s;
+  }
+
+  @keyframes cardFadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>
