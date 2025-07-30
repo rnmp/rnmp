@@ -145,12 +145,37 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     let isDragging = false;
     let hasMoved = false;
     let startX = 0, startY = 0;
+    let touchStartTime = 0;
     
     // Mouse events
     element.onmousedown = dragStart;
     
     // Touch events
     element.ontouchstart = dragStart;
+    
+    // Add click event for expandable cards (for iOS Safari compatibility)
+    if (element.classList.contains('expandable')) {
+      element.addEventListener('click', function(e) {
+        // If this was a drag, prevent expansion
+        if (cardHasMoved.get(element.id) === true) {
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+        
+        // Check if the click target is not a link
+        const target = e.target || e.srcElement;
+        if (target && target.tagName !== 'A' && !target.closest('a')) {
+          element.classList.toggle('expanded');
+          
+          // Raise z-index when expanding
+          if (element.classList.contains('expanded')) {
+            highestZIndex++;
+            element.style.zIndex = highestZIndex;
+          }
+        }
+      });
+    }
     
     // Prevent default click on anchor cards if dragged
     if (element.tagName === 'A') {
@@ -166,13 +191,18 @@ const additionalProps = href ? { href, target: '_blank' } : {};
 
     function dragStart(e) {
       e = e || window.event;
-      // Don't prevent default immediately on touch to allow clicks
-      if (e.type !== 'touchstart') {
+      // Don't prevent default for expandable cards to allow click events
+      if (e.type !== 'touchstart' && !element.classList.contains('expandable')) {
         e.preventDefault();
       }
       isDragging = true;
       hasMoved = false;
       cardHasMoved.set(element.id, false);
+      
+      // Track touch start time for iOS tap detection
+      if (e.type === 'touchstart') {
+        touchStartTime = Date.now();
+      }
       
       // Raise z-index when dragging starts
       highestZIndex++;
@@ -250,10 +280,21 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       // Remove dragging class
       element.classList.remove('dragging');
       
-      // If this is an expandable card and we haven't moved, toggle expansion
-      if (element.classList.contains('expandable') && !hasMoved) {
+      // For touch events on iOS, check if this was a quick tap
+      if (e && e.type === 'touchend' && !hasMoved) {
+        const touchDuration = Date.now() - touchStartTime;
+        // If touch was quick and didn't move, trigger a click event for iOS
+        if (touchDuration < 300 && element.classList.contains('expandable')) {
+          setTimeout(() => {
+            element.click();
+          }, 0);
+        }
+      }
+      
+      // For mouse events on desktop, handle expansion directly
+      if (e && e.type === 'mouseup' && element.classList.contains('expandable') && !hasMoved) {
         // Check if the click target is not a link
-        const target = e ? (e.target || e.srcElement) : null;
+        const target = e.target || e.srcElement;
         if (target && target.tagName !== 'A' && !target.closest('a')) {
           element.classList.toggle('expanded');
           
@@ -268,8 +309,8 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       // Reset the local movement flag
       hasMoved = false;
       
-      // For anchor elements, delay resetting the global flag to allow click prevention
-      if (element.tagName === 'A' && cardHasMoved.get(element.id)) {
+      // For elements, delay resetting the global flag to allow click prevention
+      if (cardHasMoved.get(element.id)) {
         setTimeout(() => {
           cardHasMoved.set(element.id, false);
         }, 100);
