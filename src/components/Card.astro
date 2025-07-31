@@ -153,32 +153,8 @@ const additionalProps = href ? { href, target: '_blank' } : {};
     // Touch events
     element.ontouchstart = dragStart;
     
-    // Add click event for expandable cards (for iOS Safari compatibility)
-    if (element.classList.contains('expandable')) {
-      element.addEventListener('click', function(e) {
-        // If this was a drag, prevent expansion
-        if (cardHasMoved.get(element.id) === true) {
-          e.preventDefault();
-          e.stopPropagation();
-          return false;
-        }
-        
-        // Check if the click target is not a link
-        const target = e.target || e.srcElement;
-        if (target && target.tagName !== 'A' && !target.closest('a')) {
-          element.classList.toggle('expanded');
-          
-          // Raise z-index when expanding
-          if (element.classList.contains('expanded')) {
-            highestZIndex++;
-            element.style.zIndex = highestZIndex;
-          }
-        }
-      });
-    }
-    
     // Prevent default click on anchor cards if dragged
-    if (element.tagName === 'A') {
+    if (element.tagName === 'A' || element.classList.contains('expandable')) {
       element.addEventListener('click', function(e) {
         // Check if this specific card has moved
         if (cardHasMoved.get(element.id) === true) {
@@ -279,17 +255,6 @@ const additionalProps = href ? { href, target: '_blank' } : {};
       document.body.style.overflow = '';
       // Remove dragging class
       element.classList.remove('dragging');
-      
-      // For touch events on iOS, check if this was a quick tap
-      if (e && e.type === 'touchend' && !hasMoved) {
-        const touchDuration = Date.now() - touchStartTime;
-        // If touch was quick and didn't move, trigger a click event for iOS
-        if (touchDuration < 300 && element.classList.contains('expandable')) {
-          setTimeout(() => {
-            element.click();
-          }, 0);
-        }
-      }
       
       // For mouse events on desktop, handle expansion directly
       if (e && e.type === 'mouseup' && element.classList.contains('expandable') && !hasMoved) {

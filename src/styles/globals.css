@@ -15,6 +15,9 @@ body {
   overflow: hidden;
   height: 100%;
   font-feature-settings: "salt" 1;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
 }
 
 body {
