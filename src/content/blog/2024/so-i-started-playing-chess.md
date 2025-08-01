@@ -1,6 +1,6 @@
 ---
 title: "So I started playing chess"
-date: 2024-10-13T09:37:47Z
+date: 2024-10-13
 ---
 
 It’s the best kinda game that I can enjoy at the moment. It’s very fast, mentally demanding, and quite creative. It’s also challenging in ways that weren’t obvious to me immediately: it’s intimidating. Both intellectually and socially. Especially socially. That’s because it is *intimate. *You are doing an activity and *only* that activity with another person. In silence (usually).*

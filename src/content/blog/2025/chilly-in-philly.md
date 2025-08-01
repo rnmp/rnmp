@@ -1,6 +1,6 @@
 ---
 title: "Chilly in Philly 🥶 (My January Update)"
-date: 2025-01-30T02:26:34Z
+date: 2025-01-30
 ---
 
 *Disclaimer: I apologize in advance for the lack of narrative coherence, I just had a bunch of cool things I wanted to share. I'll be improving and trying out this format going forward.

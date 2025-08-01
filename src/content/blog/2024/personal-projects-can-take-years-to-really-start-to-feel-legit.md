@@ -1,6 +1,6 @@
 ---
 title: Personal projects can take YEARS to really start to feel “legit”
-date: 2024-07-22T06:27:39Z
+date: 2024-07-22
 ---
 
 The guy from mmm.page just posted [an update](https://x.com/xhfloz/status/1814990357932732612) showing how he *just* reached 1.0 even though from my perspective he was already launched.

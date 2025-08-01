@@ -1,6 +1,6 @@
 ---
 title: "Bleep’s Public TestFlight"
-date: 2024-05-31T03:50:15Z
+date: 2024-05-31
 ---
 
 ![image.png](/blog-images/37447-1.png)
