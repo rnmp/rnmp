@@ -5,9 +5,8 @@ import BlogPost from '../../layouts/BlogPost.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => {
-    const year = post.data.date.getFullYear();
     return {
-      params: { slug: `${year}/${post.slug}` },
+      params: { slug: post.slug },
       props: { post },
     };
   });

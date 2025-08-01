@@ -27,7 +27,7 @@ const postsByYear = posts.reduce((acc, post) => {
             <ul>
               {yearPosts.map((post) => (
                 <li>
-                  <a href={`/typing/${year}/${post.slug}`}>
+                  <a href={`/typing/${post.slug}`}>
                     <span class="title">{post.data.title}</span>
                     <time datetime={post.data.date.toISOString()}>
                       {post.data.date.toLocaleDateString('en-US', {
