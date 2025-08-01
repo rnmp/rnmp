@@ -9,7 +9,7 @@ export interface Props {
 
 const { href, style, class: className = '', id, expandable } = Astro.props;
 const Tag = href ? 'a' : 'div';
-const additionalProps = href ? { href, target: '_blank' } : {};
+const additionalProps = href ? { href, target: href.includes('http') ? '_blank' : undefined } : {};
 ---
 
 <Tag class={`card ${className} ${expandable ? 'expandable' : ''}`} style={style} id={id} {...additionalProps}>
