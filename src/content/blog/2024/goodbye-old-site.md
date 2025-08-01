@@ -1,7 +1,6 @@
 ---
 title: "Goodbye, old site!"
 date: 2024-05-22T03:32:50Z
-description: "Today I launched my new website over at [rolando.is](https://rolando.is). I worked on it for about a week at the end of last year when I was consideri..."
 ---
 
 Today I launched my new website over at [rolando.is](https://rolando.is). I worked on it for about a week at the end of last year when I was considering freelancing again (decided against it.)

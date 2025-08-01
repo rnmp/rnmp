@@ -1,7 +1,6 @@
 ---
 title: "Bleep’s Public TestFlight"
 date: 2024-05-31T03:50:15Z
-description: "![image.png](/blog-images/37447-1.png)      The app is coming together nicely. Definitely rough around the edges, but it gets better from here on out...."
 ---
 
 ![image.png](/blog-images/37447-1.png)
