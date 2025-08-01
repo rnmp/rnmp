@@ -1,5 +1,5 @@
 ---
-title: Breaking the cycle of importance
+title: Breaking the cycle of presumed importance
 date: 2025-08-01
 ---
 
