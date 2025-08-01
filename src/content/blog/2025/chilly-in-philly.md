@@ -1,5 +1,5 @@
 ---
-title: "Chilly in Philly 🥶 (My January Update)"
+title: Chilly in Philly 🥶
 date: 2025-01-30
 ---
 
