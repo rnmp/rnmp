@@ -176,37 +176,46 @@ const posts = (await getCollection('blog')).sort(
 
 <script>
   function formatRelativeDate(dateStr) {
-    // Parse the date string in local timezone
-    const [year, month, day] = dateStr.split('-').map(Number);
-    const date = new Date(year, month - 1, day);
+    // Use Temporal API polyfill or fallback to careful date handling
     const now = new Date();
     
-    // Reset time to start of day for accurate day comparison
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const dateStart = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    // Parse the date in local timezone by adding time component
+    // This ensures the date is interpreted as local midnight, not UTC
+    const date = new Date(dateStr + 'T00:00:00');
     
-    const diffTime = todayStart - dateStart;
-    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+    // Get today at midnight in local timezone
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    
+    // Calculate difference in milliseconds
+    const diffTime = todayStart - date;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     
     if (diffDays === 0) return 'today';
     if (diffDays === 1) return 'yesterday';
     
+    // Handle negative days (future dates)
+    if (diffDays < 0) return dateStr;
+    
     // Check if it's in the same week
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const dateDay = dateStart.getDay();
-    const nowDay = todayStart.getDay();
+    const dateDay = date.getDay();
+    const todayDay = todayStart.getDay();
     
-    // Calculate days since last Sunday for both dates
-    const dateSinceLastSunday = dateDay;
-    const nowSinceLastSunday = nowDay;
+    // Get start of this week (Sunday)
+    const thisWeekStart = new Date(todayStart);
+    thisWeekStart.setDate(todayStart.getDate() - todayDay);
+    
+    // Get start of last week
+    const lastWeekStart = new Date(thisWeekStart);
+    lastWeekStart.setDate(thisWeekStart.getDate() - 7);
     
     // If date is in the current week (and not today/yesterday)
-    if (diffDays < 7 && nowSinceLastSunday > dateSinceLastSunday) {
+    if (date >= thisWeekStart && diffDays >= 2 && diffDays < 7) {
       return `this ${dayNames[dateDay]}`;
     }
     
     // If date is in the previous week
-    if (diffDays >= 7 && diffDays < 14) {
+    if (date >= lastWeekStart && date < thisWeekStart) {
       return `last ${dayNames[dateDay]}`;
     }
     

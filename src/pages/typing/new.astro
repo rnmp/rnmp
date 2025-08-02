@@ -243,6 +243,15 @@ import Layout from '../../layouts/Layout.astro';
   const content = document.getElementById('post-content');
   const title = document.getElementById('post-title');
   
+  // Get local date string in YYYY-MM-DD format
+  function getLocalDateString() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  
   // Image handling
   async function handleImageUpload(file) {
     const formData = new FormData();
@@ -332,7 +341,7 @@ import Layout from '../../layouts/Layout.astro';
         body: JSON.stringify({
           title: titleText,
           content: contentHtml,
-          date: new Date().toISOString().split('T')[0]
+          date: getLocalDateString()
         })
       });
       
@@ -343,10 +352,13 @@ import Layout from '../../layouts/Layout.astro';
       
       const data = await response.json();
       
-      // Give Astro dev server a moment to pick up the new file
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Give Astro dev server time to pick up the new file
+      button.textContent = 'Redirecting...';
       
-      window.location.href = `/typing/${data.slug}`;
+      // Use setTimeout instead of await to ensure it actually waits
+      setTimeout(() => {
+        window.location.href = `/typing/${data.slug}`;
+      }, 1500);
     } catch (error) {
       console.error('Save error:', error);
       alert('Failed to save post');
