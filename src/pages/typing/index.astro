@@ -25,7 +25,7 @@ const postsWithContent = await Promise.all(
 
     <header class="main-title">typing…</header>
     <div class="posts">
-      {postsWithContent.map((post) => {
+      {postsWithContent.map((post, index) => {
         // Format the date using UTC methods to avoid timezone shifts
         const formattedDate = post.data.date.toLocaleDateString('en-US', {
           year: 'numeric',
@@ -35,7 +35,7 @@ const postsWithContent = await Promise.all(
         });
         
         return (
-          <article class="blog-post">
+          <article class={`blog-post ${index < 3 ? 'post-animate' : ''}`} data-index={index}>
             <header>
               <h1><a href={`/typing/${post.slug}`}>{post.data.title}</a></h1>
               <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
@@ -96,6 +96,19 @@ const postsWithContent = await Promise.all(
       font-weight: 400;
       position: relative;
       left: 0.1em;
+      opacity: 0;
+      animation: fadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .back-link {
@@ -126,6 +139,35 @@ const postsWithContent = await Promise.all(
     backdrop-filter: blur(12px);
     border-radius: 32px;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .post-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: postFadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  .post-animate[data-index="0"] {
+    animation-delay: 0.3s;
+  }
+
+  .post-animate[data-index="1"] {
+    animation-delay: 0.5s;
+  }
+
+  .post-animate[data-index="2"] {
+    animation-delay: 0.7s;
+  }
+
+  @keyframes postFadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .blog-post header {
