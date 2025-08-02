@@ -131,17 +131,6 @@ I use function keys because they’re close to me on the keyboard and the number
 
 To setup these hotkeys, I made an Alfred workflow (below) but you can get similar results with a tool like BetterTouchTool.
 
-## Alfred Workflow
-
-![](/blog-images/alfred-workflow.png)
-
-A very important point here is to make sure triggers are executed instantly:
-
-![](/blog-images/alfred-workflow-tweaks.png)
-<small>If you don't do this, you will be waiting about a second to access each app.</small>
-
-Download [.alfredworkflow](/assets/2020-07/app_hotkeys__alfred_workflow.zip)
-
 ## Launch or switching to other apps
 
 Use <kbd>⌘ + Space</kbd> and type the first three or four letters of less common apps instead of using <kbd>⌘ + Tab</kbd>. Trust me, it’s faster. Not to mention it’s the same command you can use to open for files or folders; or to perform other quick actions.

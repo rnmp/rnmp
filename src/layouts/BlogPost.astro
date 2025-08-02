@@ -1,13 +1,14 @@
 ---
-import Layout from './Layout.astro';
-
 export interface Props {
   title: string;
   date: Date;
+  slug: string;
   description?: string;
+  class?: string;
+  index?: number;
 }
 
-const { title, date, description } = Astro.props;
+const { title, date, description, slug, class: className, index } = Astro.props;
 
 // Ensure we're working with a Date object
 const dateObj = date instanceof Date ? date : new Date(date);
@@ -21,33 +22,22 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
 });
 ---
 
-<Layout title={title} description={description} backgroundVariant="typing" animate={false}>
-<main>
-  <article class="blog-post">
-    <header>
-      <h1>{title}</h1>
-      <time datetime={date.toISOString()}>{formattedDate}</time>
-    </header>
-    <div class="content">
-      <slot />
-    </div>
-  </article>
-</main>
-</Layout>
+<article class={`blog-post ${className ?? ''}`} data-index={index ?? 0}>
+  <header>
+    <h1><a href={`/typing/${slug}`}>{title}</a></h1>
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+  </header>
+  <div class="content">
+    <slot />
+  </div>
+</article>
 
 <style>
-  main {
-    height: 100%;
-    overflow: scroll;
-  }
-  
   .blog-post {
     position: relative;
     max-width: 600px;
-    margin: 2rem auto;
-    padding: 3rem 2rem;
-    min-height: calc(100vh - 4rem);
-    z-index: 1;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 2.5rem;
     background-color: rgba(20, 20, 30, 0.4);
     backdrop-filter: blur(12px);
     border-radius: 32px;
@@ -59,13 +49,15 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     text-align: center;
   }
 
-  h1 {
+
+  header h1 {
     font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: clamp(2rem, 2.5vw, 3rem);
     line-height: 1.2;
     margin-bottom: 1rem;
     color: white;
     font-weight: 300;
+    text-wrap: balance;
   }
 
   time {
@@ -77,45 +69,32 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
 
   .content {
     font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.7;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.9);
   }
 
-  .content :global(h2) {
-    font-family: 'Jugendreisen', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 1.8rem;
-    margin: 2rem 0 1rem;
-    color: white;
-    text-shadow: 
-      0 0 10px rgba(255, 255, 255, 0.5), 
-      0 0 20px rgba(255, 255, 255, 0.3),
-      0 4px 8px rgba(0, 0, 0, 0.5);
+  .content > :global(h1),
+  .content > :global(h2),
+  .content > :global(h3),
+  .content > :global(h4) {
+    font-weight: 600;
+    margin-bottom: -0.75em;
   }
 
-  .content :global(h3) {
-    font-family: 'Jugendreisen', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 1.4rem;
-    margin: 1.5rem 0 0.75rem;
-    color: white;
-    text-shadow: 
-      0 0 8px rgba(255, 255, 255, 0.4), 
-      0 2px 4px rgba(0, 0, 0, 0.5);
-  }
-
-  .content :global(p) {
-    margin-bottom: 1.5rem;
+  .content > :global(* + *) {
+    margin-top: 1.5rem;
   }
 
   .content :global(a) {
-    color: #6db3f2;
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
+    color: hsla(49, 100%, 72%, 1.0);
+        text-shadow: 
+      0 0 20px rgba(255, 229, 114, 0.6), 
+      0 0 40px rgba(255, 229, 114, 0.4), 
+      0 0 60px rgba(255, 229, 114, 0.3),
+      0 0.02em 0 #FFBF45,
+      0 8px 16px hsl(239, 23%, 11%);
   }
 
-  .content :global(a:hover) {
-    border-bottom-color: #6db3f2;
-  }
 
   .content :global(blockquote) {
     border-left: 3px solid rgba(255, 255, 255, 0.3);
@@ -148,11 +127,20 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
   }
 
   .content :global(img) {
-    max-width: 100%;
+    width: calc(100% + 6rem);
     height: auto;
-    border-radius: 8px;
-    margin: 1.5rem 0;
+    border-radius: 16px;
+    margin: 2.5rem -3rem;
     display: block;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+    background-color: rgba(20, 20, 30, 0.8);
+    backdrop-filter: blur(12px);
+  }
+
+  .content :global(ul),
+  .content :global(ol) {
+    padding-left: 1.5rem;
+    /* margin: 1.5rem 0; */
   }
 
   @media (max-width: 756px) {

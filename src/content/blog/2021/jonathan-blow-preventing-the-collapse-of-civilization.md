@@ -3,7 +3,9 @@ title: "Jonathan Blow: Preventing the Collapse of Civilization"
 date: 2021-04-22
 ---
 
-In this talk, video game programmer Jonathan Blow speaks of the sometimes
+[![Jonathan Blow](/blog-images/jon-blow-tech-auto-degrades.jpg)](https://www.youtube.com/watch?v=fEn2HPGXwj8)
+
+[In this talk,](https://www.youtube.com/watch?v=fEn2HPGXwj8) video game programmer Jonathan Blow speaks of the sometimes
 unnecessary complexity that comes with writing software. Systems that would
 initially be well understood (e.g. a single person can read and change them) are
 now split in different services and abstractions that are harder to inherit and

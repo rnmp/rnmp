@@ -25,6 +25,10 @@ body {
 
 a {
   color: inherit;
+  text-decoration: unset;
+}
+a:hover {
+  text-decoration: underline;
   text-decoration-thickness: 0.5px;
   text-decoration-style: wavy;
 }

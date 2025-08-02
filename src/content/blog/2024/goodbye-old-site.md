@@ -18,3 +18,5 @@ The new one hopefully carries my typographic tradition, but with a little bit mo
 Speaking of typography, the beautiful font that powers the site is called [Jugendreisen](https://prettyfacestypefaces.com/Jugendreisen) and is made by my incredibly talented friend [Jean Wojciechowski](https://www.jeanwoj.com). I mean… look at these alternates:
 
 ![image.png](/blog-images/37256-3.png)
+
+✌️

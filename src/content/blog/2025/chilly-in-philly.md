@@ -3,8 +3,6 @@ title: Chilly in Philly 🥶
 date: 2025-01-30
 ---
 
-*Disclaimer: I apologize in advance for the lack of narrative coherence, I just had a bunch of cool things I wanted to share. I'll be improving and trying out this format going forward.
-*
 January. January. January. Always an odd month for me. While most people are working towards their New Year Resolutions, I kinda use it as a “buffering” month. I slow down my productivity and try to not have plans. So…
 
 # Games
