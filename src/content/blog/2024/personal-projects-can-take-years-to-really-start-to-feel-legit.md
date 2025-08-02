@@ -17,7 +17,7 @@ Surely I could’ve built a web-first personal private and encrypted solution wi
 
 I… didn’t realize this at first. I also happened to choose a very personal project (I use it every day). I am effectively trying to design what I think is the best app to process new information &amp; build a mental map of memorable things (I will always struggle to describe it lol).
 
-**ANYWAY, **I spent about 2 years (2021-2023) from conceptualizing to building the app as a web app, and it wasn’t until I started building something on the mobile app that I realize just how fragmented my approach was. And even then I was in denial, thinking I could solo make a cross platform app with web and api syncing all by myself.
+**ANYWAY,** I spent about 2 years (2021-2023) from conceptualizing to building the app as a web app, and it wasn’t until I started building something on the mobile app that I realize just how fragmented my approach was. And even then I was in denial, thinking I could solo make a cross platform app with web and api syncing all by myself.
 
 Fast forward to almost 3 years (now mid 2024) and I am finally in seemingly the right platform, working more sustainably… BUT I am a total noob now, so I’m slowed down by my inexperience with SwiftUI and its lower level APIs.
 

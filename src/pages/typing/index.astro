@@ -19,7 +19,7 @@ const postsWithContent = await Promise.all(
 
 ---
 
-<Layout title="Typing - Rolando Murillo" description="Blog posts and writings by Rolando Murillo" background="/blog-images/typing-background.png">
+<Layout title="Rolando is typing…" description="Blog posts and writings by Rolando Murillo" backgroundVariant="typing">
 <main>
   <div class="blog-index">
 
@@ -37,7 +37,7 @@ const postsWithContent = await Promise.all(
         return (
           <article class="blog-post">
             <header>
-              <h1>{post.data.title}</h1>
+              <h1><a href={`/typing/${post.slug}`}>{post.data.title}</a></h1>
               <time datetime={post.data.date.toISOString()}>{formattedDate}</time>
             </header>
             <div class="content">
@@ -67,6 +67,9 @@ const postsWithContent = await Promise.all(
     margin-bottom: 3rem;
     text-align: center;
     padding: 0 1.5rem;
+    a {
+      text-decoration: none;
+    }
   }
 
   .main-title {
@@ -81,6 +84,8 @@ const postsWithContent = await Promise.all(
       0 0.02em 0 #FFBF45,
       0 8px 16px hsl(239, 23%, 11%);
       font-weight: 400;
+      position: relative;
+      left: 0.1em;
   }
 
   .back-link {
