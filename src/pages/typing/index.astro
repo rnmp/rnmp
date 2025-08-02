@@ -63,6 +63,16 @@ const postsWithContent = await Promise.all(
     min-height: 100vh;
   }
 
+  .content :global(a) {
+    color: hsla(49, 100%, 72%, 1.0);
+        text-shadow: 
+      0 0 20px rgba(255, 229, 114, 0.6), 
+      0 0 40px rgba(255, 229, 114, 0.4), 
+      0 0 60px rgba(255, 229, 114, 0.3),
+      0 0.02em 0 #FFBF45,
+      0 8px 16px hsl(239, 23%, 11%);
+  }
+
   header {
     margin-bottom: 3rem;
     text-align: center;
@@ -171,14 +181,13 @@ const postsWithContent = await Promise.all(
   }
 
   .content :global(a) {
-    color: #6db3f2;
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px dotted transparent;
     transition: border-color 0.2s;
   }
 
   .content :global(a:hover) {
-    border-bottom-color: #6db3f2;
+    border-bottom-color: #FFBF45;
   }
 
   .content :global(blockquote) {
