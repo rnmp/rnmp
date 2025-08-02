@@ -21,10 +21,9 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
 });
 ---
 
-<Layout title={title} description={description} background="/blog-images/typing-background.png">
+<Layout title={title} description={description} background="/blog-images/typing-background.png" animate={false}>
 <main>
   <article class="blog-post">
-    <a href="/typing" class="back-link">typing…</a>
     <header>
       <h1>{title}</h1>
       <time datetime={date.toISOString()}>{formattedDate}</time>
@@ -41,15 +40,6 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     height: 100%;
     overflow: scroll;
   }
-  .back-link {
-    display: block;
-    color: hsla(49, 100%, 72%, 1.0);
-    text-decoration: none;
-    font-size: 1rem;
-    text-align: center;
-    font-family: 'Jugendreisen', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-
   
   .blog-post {
     position: relative;

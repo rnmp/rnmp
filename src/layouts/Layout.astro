@@ -5,9 +5,10 @@ export interface Props {
   title: string;
   description?: string;
   background?: string;
+  animate?: boolean;
 }
 
-const { title, description, background = '/background.jpg' } = Astro.props;
+const { title, description, background = '/background.jpg', animate = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,27 +28,43 @@ const { title, description, background = '/background.jpg' } = Astro.props;
       gtag('config', 'G-0HVRQ30KRH');
     </script>
   </head>
-  <body data-background={background}>
+  <body data-background={background} data-animate={animate.toString()}>
     <slot />
     <script>
       // Progressive background image loading
-      const img = new Image();
-      img.onload = function() {
-        // Update the background image to the full version
+      const shouldAnimate = document.body.dataset.animate === 'true';
+      
+      if (shouldAnimate) {
+        const img = new Image();
+        img.onload = function() {
+          // Update the background image to the full version
+          const style = document.createElement('style');
+          style.textContent = `
+            body::before {
+              background-image: url('${this.src}');
+            }
+          `;
+          document.head.appendChild(style);
+          
+          // Add class to trigger the transition
+          document.body.classList.add('background-loaded');
+        };
+        
+        // Start loading the full image
+        img.src = document.body.dataset.background;
+      } else {
+        // No animation - immediately set background
         const style = document.createElement('style');
         style.textContent = `
           body::before {
-            background-image: url('${this.src}');
+            background-image: url('${document.body.dataset.background}');
+            filter: blur(0px);
+            animation: none;
           }
         `;
         document.head.appendChild(style);
-        
-        // Add class to trigger the transition
         document.body.classList.add('background-loaded');
-      };
-      
-      // Start loading the full image
-      img.src = document.body.dataset.background;
+      }
     </script>
   </body>
 </html>
