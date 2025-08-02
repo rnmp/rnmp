@@ -31,5 +31,3 @@ I don't yet have a consistent marketing strategy, but this particular win came f
 I'm not yet advertising the use cases — I've been lucky enough to find that Bleep resonates with other designers and engineers viscerally at the conceptual level, but I do plan to talk a bit more about the "why?" in an upcoming video on [my Youtube channel.](https://www.youtube.com/@rolobuilds)
 
 ✌️
-
-PS: I do not run a newsletter, but if you happened to enjoy this feel free to drop your email below for more updates. I swear, it's not a newsletter. I may not even post in like another 3 months. But that's not necessarily a bad thing, right?
