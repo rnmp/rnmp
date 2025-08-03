@@ -85,7 +85,7 @@ const postsWithContent = await Promise.all(
   .blog-index {
     position: relative;
     padding: 72px;
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   header {
@@ -181,12 +181,15 @@ const postsWithContent = await Promise.all(
       padding: 0.5em;
     }
     .blog-index {
-      padding: 1rem;
+      padding: 1rem 0.5rem;
     }
     .blog-post {
       padding: 2rem 1rem;
       border-radius: 20px;
     }
+  .posts {
+    gap: 1rem;
+  }
   }
 </style>
 
