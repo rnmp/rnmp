@@ -3,7 +3,7 @@ title: "Jonathan Blow: Preventing the Collapse of Civilization"
 date: 2021-04-22
 ---
 
-[![Jonathan Blow](/blog-images/jon-blow-tech-auto-degrades.jpg)](https://www.youtube.com/watch?v=fEn2HPGXwj8)
+[Technology Automatically Degrades - Jonathan Blow](https://www.youtube.com/watch?v=fEn2HPGXwj8)
 
 [In this talk,](https://www.youtube.com/watch?v=fEn2HPGXwj8) video game programmer Jonathan Blow speaks of the sometimes
 unnecessary complexity that comes with writing software. Systems that would
