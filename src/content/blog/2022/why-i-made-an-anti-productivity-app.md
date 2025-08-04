@@ -7,7 +7,7 @@ Wanting to organize myself and my thoughts goes deeper than just "getting things
 
 In theory, technology should help us get to a point where we truly understand ourselves, and what steps to take to become the people we want to be. But we’ve really only touched the surface. The "productivity" software available today is either too plain and boring, or too complicated to be practical.
 
-Most importantly, productivity software has made us obsessed with being accomplished and knowledgeable, instead of present and observant.
+Most importantly, productivity software has made us obsessed with being _accomplished_ and _knowledgeable_, instead of _present_ and _observant_.
 
 ![](/blog-images/anti-productivity-app/bleep_intro.webp)
 
@@ -60,7 +60,7 @@ Achieving the right balance between the two ends of the spectrum is an ongoing p
 
 Like technology itself, apps are often expected to have powerful features that help us reach optimal efficiency. But should that always be the end goal? What if we think of apps as digital experiences, where the focus isn't on individual features, but on what each experience allows us to do?
 
-Each experience has a purpose. It’s presented so that you act and feel in a certain way. And when you go into each experience depends on what you need at the moment. 
+Each experience has a purpose. It’s _presented_ so that you act and feel in a certain way. And _when_ you go into each experience depends on _what_ you need at the moment. 
 
 For example, here are the current experiences of Bleep:
 
@@ -72,9 +72,9 @@ Some experiences can indeed help you be fast at something. Other can help you sl
 
 # It’s not really about “productivity” anyway
 
-I mentioned how the current spectrum of "tools for thought" focus on making you feel accomplished and knowledgeable because those are the typical associations we make with "productivity". We typically use them exclusively for work but rarely to capture random thoughts, moments, or to keep track of places we want to revisit, physically or virtually. 
+I mentioned how the current spectrum of "tools for thought" focus on making you feel accomplished and knowledgeable because those are the typical associations we make with "productivity". We typically use them _exclusively_ for work but rarely to capture random thoughts, moments, or to keep track of places we want to revisit, physically or virtually. 
 
-I believe creative thinkers are less interested in building a robust and complex "second brain" when they already have big ideas and priorities in life. We simply don’t want to lose track of what matters to us. We want to make room for it. This should make us feel present, whether that’s on a weekday at work and writing our next big idea, or on the weekend checking out new music. Being present helps us better observe and understand ourselves.
+I believe creative thinkers are less interested in building a robust and complex "second brain" when they already have big ideas and priorities in life. We simply don’t want to lose track of what matters to us. We want to make room for it. This should make us feel _present_, whether that’s on a weekday at work and writing our next big idea, or on the weekend checking out new music. Being _present_ helps us better _observe_ and understand ourselves.
 
 # Wrapping up
 
