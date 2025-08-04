@@ -7,9 +7,9 @@ Supppp. I'm here vibe coding on a plane as I write this. I'm actually updating y
 
 Anyway, I'm hoping to reflect about how I broke the "cycle of presumed importance" when it comes to building things. I'll explain.
 
-I wrote an article last year how [personal projects can take years to feel legit](/typing/2024/personal-projects-can-take-years-to-really-start-to-feel-legit). Referring to the journey of my app [Bleep](https://bleep.is) and how long it took for me to feel like I narrowed down what I wanted it to be.
+I wrote an article last year about how [personal projects can take years to feel legit](/typing/2024/personal-projects-can-take-years-to-really-start-to-feel-legit), referring to the journey of my app [Bleep](https://bleep.is) and how long it took for me to feel like I narrowed down what I wanted it to be.
 
-Fast forward to today, it's been arguably successful in attracting paying customers and active users. I've gotten enough validation to know that I should keep going. But the road ahead feels ever so daunting.
+Fast forward to today, it's been arguably successful in attracting paying customers and active users. I've gotten [enough validation to know that I should keep going.](https://www.threads.com/@rnmp/post/DK9KuGINm1t) But the road ahead feels ever so daunting.
 
 # The cycle
 
