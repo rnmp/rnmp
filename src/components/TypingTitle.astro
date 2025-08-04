@@ -1,0 +1,49 @@
+<header><a href="/typing">typing…</a></header>
+
+<style>
+  header {
+    font-family: 'Jugendreisen', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 72px;
+    margin-bottom: 0.5em;
+    text-align: center;
+    color: hsla(49, 100%, 72%, 1.0);
+    text-shadow: 
+      0 0 20px rgba(255, 229, 114, 0.6), 
+      0 0 40px rgba(255, 229, 114, 0.4), 
+      0 0 60px rgba(255, 229, 114, 0.3),
+      0 0.02em 0 #FFBF45,
+      0 8px 16px hsl(239, 23%, 11%);
+      font-weight: 400;
+      position: relative;
+      left: 0.1em;
+      opacity: 0;
+      animation: fadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      a:hover {
+        text-decoration: none;
+      }
+  }
+
+
+  @media (max-width: 756px) {
+    header {
+      font-size: 48px;
+    }
+  }
+  
+  @media (max-width: 512px) {
+    header {
+      font-size: 32px;
+    }
+  }
+
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

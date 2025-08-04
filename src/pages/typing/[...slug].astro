@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import BlogContainer from '../../components/BlogContainer.astro';
 import Layout from '../../layouts/Layout.astro';
+import TypingTitle from '../../components/TypingTitle.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -17,17 +19,21 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title} description={post.data.description} backgroundVariant="typing" animate={false}>
-<main>
-  <BlogPost title={post.data.title} date={post.data.date} description={post.data.description} slug={post.slug}>
-  <Content />
-</BlogPost>
-</main>
+<Layout 
+  title={post.data.title} 
+  description={post.data.description} 
+  backgroundVariant="typing" 
+  animate={false}
+>
+  <BlogContainer>
+    <TypingTitle />
+    <BlogPost 
+      title={post.data.title} 
+      date={post.data.date} 
+      description={post.data.description} 
+      slug={post.slug}
+    >
+      <Content />
+    </BlogPost>
+  </BlogContainer>
 </Layout>
-
-<style>
-  main {
-    height: 100%;
-    overflow: scroll;
-  }
-</style>

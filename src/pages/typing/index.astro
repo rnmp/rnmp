@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogPost from '../../layouts/BlogPost.astro';
+import TypingTitle from '../../components/TypingTitle.astro';
+import BlogContainer from '../../components/BlogContainer.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
@@ -25,34 +27,32 @@ const postsWithContent = await Promise.all(
   description="Blog posts and writings by Rolando Murillo" 
   backgroundVariant="typing"
 >
-  <main>
-    <div class="blog-index">
-      <header class="main-title">typing…</header>
-      <div class="posts">
-        {postsWithContent.map((post, index) => {
-          const formattedDate = post.data.date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'UTC'
-          });
-          
-          return (
-            <BlogPost 
-              title={post.data.title} 
-              date={post.data.date} 
-              description={post.data.description}
-              slug={post.slug}
-              class={`post-animate`}
-              index={index}
-            >
-              <post.Content />
-            </BlogPost>
-          );
-        })}
-      </div>
+  <BlogContainer>
+    <TypingTitle />
+    <div class="posts">
+      {postsWithContent.map((post, index) => {
+        const formattedDate = post.data.date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          timeZone: 'UTC'
+        });
+        
+        return (
+          <BlogPost 
+            title={post.data.title} 
+            date={post.data.date} 
+            description={post.data.description}
+            slug={post.slug}
+            class={`post-animate`}
+            index={index}
+          >
+            <post.Content />
+          </BlogPost>
+        );
+      })}
     </div>
-  </main>
+  </BlogContainer>
 </Layout>
 
 
@@ -77,61 +77,11 @@ const postsWithContent = await Promise.all(
 </style>
 
 <style>
-  main {
-    height: 100%;
-    overflow: scroll;
-  }
-
-  .blog-index {
-    position: relative;
-    padding: 72px;
-    min-height: 100dvh;
-  }
-
-  header {
-    margin-bottom: 3rem;
-    text-align: center;
-    padding: 0 1.5rem;
-    a {
-      text-decoration: none;
-    }
-  }
-
-  .main-title {
-    font-family: 'Jugendreisen', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 72px;
-    margin-bottom: 0.5em;
-    color: hsla(49, 100%, 72%, 1.0);
-    text-shadow: 
-      0 0 20px rgba(255, 229, 114, 0.6), 
-      0 0 40px rgba(255, 229, 114, 0.4), 
-      0 0 60px rgba(255, 229, 114, 0.3),
-      0 0.02em 0 #FFBF45,
-      0 8px 16px hsl(239, 23%, 11%);
-      font-weight: 400;
-      position: relative;
-      left: 0.1em;
-      opacity: 0;
-      animation: fadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-  }
-
-  @keyframes fadeInSlideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   .posts {
     display: flex;
     flex-direction: column;
     gap: 3rem;
   }
-
 
   @keyframes postFadeInSlideUp {
     from {
@@ -144,47 +94,10 @@ const postsWithContent = await Promise.all(
     }
   }
 
-  @media (max-width: 1200px) {
-    h2 {
-      font-size: 72px;
-    }
-  }
-  
-  @media (max-width: 756px) {
-    .main-title {
-      font-size: 48px;
-    }
-    h2 {
-      font-size: 48px;
-    }
-    .blog-index {
-      padding: 1.5rem;
-    }
-    .blog-post {
-      padding: 2rem 1.5rem;
-      border-radius: 24px;
-    }
-  }
-  
   @media (max-width: 512px) {
-    .main-title {
-      font-size: 32px;
+    .posts {
+      gap: 1rem;
     }
-    h2 {
-      font-size: 32px;
-      text-align: center;
-      padding: 0.5em;
-    }
-    .blog-index {
-      padding: 1rem 0.5rem;
-    }
-    .blog-post {
-      padding: 2rem 1rem;
-      border-radius: 20px;
-    }
-  .posts {
-    gap: 1rem;
-  }
   }
 </style>
 
