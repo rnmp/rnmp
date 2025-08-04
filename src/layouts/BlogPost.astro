@@ -126,7 +126,8 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     color: rgba(255, 255, 255, 0.9);
   }
 
-  .content :global(img) {
+  .content :global(img),
+  .content :global(video) {
     width: calc(100% + 6rem);
     height: auto;
     border-radius: 16px;
@@ -156,9 +157,10 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     .blog-post {
       margin: 0;
     }
-  .content :global(img) {
-    width: calc(100% + 3.5rem);
-    margin: 2.5rem -1.75rem;
-  }
+    .content :global(img),
+    .content :global(video) {
+      width: calc(100% + 3.5rem);
+      margin: 2.5rem -1.75rem;
+    }
   }
 </style>
