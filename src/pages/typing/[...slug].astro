@@ -4,6 +4,7 @@ import BlogPost from '../../layouts/BlogPost.astro';
 import BlogContainer from '../../components/BlogContainer.astro';
 import Layout from '../../layouts/Layout.astro';
 import TypingTitle from '../../components/TypingTitle.astro';
+import EmailForm from '../../components/EmailForm.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -35,5 +36,6 @@ const { Content } = await post.render();
     >
       <Content />
     </BlogPost>
+    <EmailForm />
   </BlogContainer>
 </Layout>

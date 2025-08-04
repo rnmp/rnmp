@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import BlogPost from '../../layouts/BlogPost.astro';
 import TypingTitle from '../../components/TypingTitle.astro';
 import BlogContainer from '../../components/BlogContainer.astro';
+import EmailForm from '../../components/EmailForm.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
@@ -29,6 +30,7 @@ const postsWithContent = await Promise.all(
 >
   <BlogContainer>
     <TypingTitle />
+    <EmailForm />
     <div class="posts">
       {postsWithContent.map((post, index) => {
         const formattedDate = post.data.date.toLocaleDateString('en-US', {
