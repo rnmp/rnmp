@@ -55,6 +55,19 @@ const postsWithContent = await Promise.all(
   </BlogContainer>
 </Layout>
 
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  @media (max-width: 512px) {
+    .posts {
+      gap: 1rem;
+    }
+  }
+</style>
 
 <style is:global>
   .post-animate {
@@ -74,14 +87,6 @@ const postsWithContent = await Promise.all(
   .post-animate[data-index="2"] {
     animation-delay: 0.7s;
   }
-</style>
-
-<style>
-  .posts {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
 
   @keyframes postFadeInSlideUp {
     from {
@@ -93,11 +98,4 @@ const postsWithContent = await Promise.all(
       transform: translateY(0);
     }
   }
-
-  @media (max-width: 512px) {
-    .posts {
-      gap: 1rem;
-    }
-  }
 </style>
-
