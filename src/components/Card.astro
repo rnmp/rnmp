@@ -9,7 +9,8 @@ export interface Props {
 
 const { href, style, class: className = '', id, expandable } = Astro.props;
 const Tag = href ? 'a' : 'div';
-const additionalProps = href ? { href, target: href.includes('http') ? '_blank' : undefined } : {};
+const isExternalLink = href && href.includes('http');
+const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undefined } : {};
 ---
 
 <Tag class={`card ${className} ${expandable ? 'expandable' : ''}`} style={style} id={id} {...additionalProps}>
@@ -19,7 +20,7 @@ const additionalProps = href ? { href, target: href.includes('http') ? '_blank' 
   <slot name="expandable" />
   </div>
   )}
-  {href && (
+  {isExternalLink && (
 <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
   )}
 </Tag>
