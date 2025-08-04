@@ -34,7 +34,10 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
 
 <div id="lightbox" class="lightbox">
   <img id="lightbox-img" src="" alt="">
-  <button id="lightbox-close" class="lightbox-close" aria-label="Close lightbox">&times;</button>
+  <button id="lightbox-close" class="lightbox-close" aria-label="Close lightbox">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</button>
 </div>
 
 <script>
@@ -337,22 +340,30 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     right: 2rem;
     width: 3rem;
     height: 3rem;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(20, 20, 30, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: none;
-    border-radius: 50%;
+    border-radius: 24px;
     color: white;
     font-size: 2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), 
+                box-shadow 0.2s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
   .lightbox-close:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
+    transform: scale(1.08);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.4), 0 16px 48px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox-close svg {
+    opacity: 0.6;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   @media (max-width: 512px) {
