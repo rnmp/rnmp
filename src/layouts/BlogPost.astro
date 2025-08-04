@@ -250,6 +250,15 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     backdrop-filter: blur(12px);
   }
 
+  .content :global(small) {
+    display: block;
+    text-align: center;
+    margin-top: -1.5em;
+    font-weight: 500;
+    opacity: 0.8;
+    text-wrap: balance;
+  }
+
   .content :global(ul),
   .content :global(ol) {
     padding-left: 1.5rem;
