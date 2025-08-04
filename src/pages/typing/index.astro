@@ -126,17 +126,6 @@ const postsWithContent = await Promise.all(
     }
   }
 
-  .back-link {
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-  }
-
-  .back-link:hover {
-    color: white;
-  }
-
   .posts {
     display: flex;
     flex-direction: column;
@@ -162,6 +151,9 @@ const postsWithContent = await Promise.all(
   }
   
   @media (max-width: 756px) {
+    .main-title {
+      font-size: 48px;
+    }
     h2 {
       font-size: 48px;
     }
@@ -175,6 +167,9 @@ const postsWithContent = await Promise.all(
   }
   
   @media (max-width: 512px) {
+    .main-title {
+      font-size: 32px;
+    }
     h2 {
       font-size: 32px;
       text-align: center;

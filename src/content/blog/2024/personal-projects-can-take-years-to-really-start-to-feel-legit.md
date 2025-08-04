@@ -25,7 +25,7 @@ I’m functionally where the web Bleep was (pretty much), but there’s quite a 
 
 I would love to win an Apple Design Award. 🥇😥
 
-**SO, **a lot of this is clearly can create pressure and self-doubt (e.g. am I procrastinating, should I have shipped an “MVP” on web before going down this rabbit hole???), but seeing others talk about how long projects can take before they feel like they’re arriving at a certain direction is definitely reassuring.
+**SO,** a lot of this is clearly can create pressure and self-doubt (e.g. am I procrastinating, should I have shipped an “MVP” on web before going down this rabbit hole???), but seeing others talk about how long projects can take before they feel like they’re arriving at a certain direction is definitely reassuring.
 
 So far my main struggle was about deciding how to approach a project without it being a tedious chore, or rather, how to stay motivated. Sadly the activities that help me stay motivated (marketing and product design) are also tedious and out of my comfort zone (my designer days are past me 😅), so they take extra muscle to get going.
 

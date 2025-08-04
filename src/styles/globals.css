@@ -21,6 +21,7 @@ body {
 body {
   color: var(--body-foreground-color);
   background: var(--body-background-color);
+  font-family: 'Rubik', sans-serif;
 }
 
 a {
