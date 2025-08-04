@@ -6,11 +6,11 @@ function remarkVideos() {
   return (tree) => {
     // Traverse the tree recursively
     function visit(node) {
-      if (node.type === 'image' && node.url) {
+      if (node.type === 'link' && node.url) {
         if (node.url.endsWith('.mp4') || node.url.endsWith('.mov')) {
           // Convert image node to HTML node with video tag
           node.type = 'html';
-          node.value = `<video src="${node.url}" autoplay muted loop playsinline controls></video>`;
+          node.value = `<video src="${node.url}" autoplay muted loop playsinline></video>`;
         }
       }
 

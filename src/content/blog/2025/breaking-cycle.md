@@ -17,7 +17,7 @@ Let's focus on the thought of "getting enough validation to know that I should k
 
 And thus I "broke" this cycle by starting to revisit other ideas I’m still very curious about. I also never got to start over on a new project with everything I even learned about Bleep.
 
-![](/blog-images/flow_demo.mp4)
+[Video of Flow](/blog-images/flow_demo.mp4)
 
 Enter [Flow](https://www.threads.com/@rnmp/post/DMg1n-Oq6bu), a "finance" app that has a much narrower scope: manual tracking of accounts, budgets & goals **AND…**
 
@@ -29,7 +29,7 @@ I started this work with such low expectations (in the best possible way) by bei
 
 This allowed me to use this as an opportunity to build it primarily through LLMS (shout out to Claude Code) and do a lot of manual fine tuning at a record time. I built this app in two weeks to a very endearing amount of polish. Launching it also softly through TestFlight. As opposed to directly to the world in all stores on Bleep without having the opportunity to fix obvious bugs, etc.
 
-![](/blog-images/new_site.mp4)
+[Video of new site](/blog-images/new_site.mp4)
 
 Introducing a new app gave me the opportunity to revisit my portfolio/website as well, because I needed to think a bit about what I wanted to offer to the world as a brand of apps, plural.
 
