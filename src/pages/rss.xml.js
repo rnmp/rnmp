@@ -18,19 +18,19 @@ function remarkVideos() {
           node.value = `<video src="${videoUrl}" autoplay muted loop playsinline controls></video>`;
         }
       }
-      
+
       // Handle YouTube links in paragraphs (only if link is alone)
-      if (node.type === 'paragraph' && 
-          node.children && 
-          node.children.length === 1 && 
-          node.children[0].type === 'link') {
+      if (node.type === 'paragraph' &&
+        node.children &&
+        node.children.length === 1 &&
+        node.children[0].type === 'link') {
         const link = node.children[0];
         const url = link.url;
-        
+
         // Check if it's a YouTube URL
         const youtubeRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/;
         const match = url?.match(youtubeRegex);
-        
+
         if (match) {
           const videoId = match[1];
           // Convert the paragraph to an HTML node with YouTube embed
@@ -65,27 +65,27 @@ function rehypeAbsoluteUrls() {
           node.properties.src = `${SITE_URL}${node.properties.src}`;
         }
       }
-      
+
       // Handle a tags
       if (node.type === 'element' && node.tagName === 'a') {
         if (node.properties?.href && node.properties.href.startsWith('/')) {
           node.properties.href = `${SITE_URL}${node.properties.href}`;
         }
       }
-      
+
       // Handle video tags
       if (node.type === 'element' && node.tagName === 'video') {
         if (node.properties?.src && node.properties.src.startsWith('/')) {
           node.properties.src = `${SITE_URL}${node.properties.src}`;
         }
       }
-      
+
       // Visit children
       if (node.children && Array.isArray(node.children)) {
         node.children.forEach(child => visit(child));
       }
     }
-    
+
     visit(tree);
   };
 }
@@ -98,7 +98,7 @@ const markdownProcessor = await createMarkdownProcessor({
 
 export async function GET(context) {
   const posts = await getCollection('blog');
-  
+
   // Sort posts by date, newest first
   const sortedPosts = posts.sort((a, b) => {
     const dateA = new Date(a.data.date);
@@ -111,7 +111,7 @@ export async function GET(context) {
     sortedPosts.map(async (post) => {
       // Convert markdown to HTML using the processor with remarkVideos and absolute URLs
       const result = await markdownProcessor.render(post.body);
-      
+
       return {
         title: post.data.title,
         pubDate: new Date(post.data.date),
@@ -124,7 +124,7 @@ export async function GET(context) {
   );
 
   return rss({
-    title: "Rolando's Blog",
+    title: "Rolando is typing…",
     description: "Thoughts on programming, design, and creating digital experiences",
     site: SITE_URL,
     items: itemsWithContent,
