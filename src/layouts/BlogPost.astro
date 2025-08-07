@@ -198,6 +198,10 @@ const formattedDate = dateObj.toLocaleDateString('en-US', {
     margin-top: 1.5rem;
   }
 
+  .content :global(li > * + *) {
+    margin: 0.5rem 0;
+  }
+
   .content :global(a) {
     color: hsla(49, 100%, 72%, 1.0);
         text-shadow: 
