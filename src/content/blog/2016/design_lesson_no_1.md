@@ -1,5 +1,5 @@
 ---
-title: "Design Lesson No. 1: Talk to People"
+title: "Design Lesson #1: Talk to People"
 date: 2016-10-18
 ---
 
