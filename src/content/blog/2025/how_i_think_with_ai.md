@@ -1,5 +1,5 @@
 ---
-title: How I Think with AI
+title: What Would My AI Say?
 date: 2025-08-11
 ---
 
