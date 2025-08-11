@@ -4,7 +4,7 @@ date: 2025-08-11
 ---
 
 Some AI-positive random thoughts with some internal deliberations:
-- Posted image showing the underwhelming launch of GPT-5 and it seemed to have made a reaction
+- The other day [I posted an image about the underwhelming launch of GPT-5](https://www.threads.com/@rnmp/post/DNEZWCWS2o0?xmt=AQF0-HzOL9zP0_TDmuwNcuj2RAYAPZ9togh4vhsSa4WDrw) and it seemed to have had quite the reaction
   - I was half kidding with that image 
     - I am impressed by the improvement in error correction and less hallucinations, etc.
   - But it made me realize that true revolution in AI for me was to think about how it’s evolved my thinking as I can now delegate it. Meaning, I can expedite my argument-making in elaborating theses that I use in my mind to make decisions
