@@ -1,6 +1,6 @@
 ---
 title: How I Think with AI
-date: 2024-06-15
+date: 2025-08-11
 ---
 
 Some AI-positive random thoughts with some internal deliberations:
