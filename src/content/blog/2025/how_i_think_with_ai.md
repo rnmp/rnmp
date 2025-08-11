@@ -14,5 +14,5 @@ Some AI-positive random thoughts with some internal deliberations:
 - I'm calling it _my_ AI because if you really think about it, everyone gets different AI experiences because everyone asks questions and formulates their thinking differently. That's really cool! That's what's positive about it.
 - It is still a bit challenging to preserve spontaneity if you constantly try to automate thoughts without letting them just… be?
 
-My takeaway: the more that you use AI, the more that you develop your own way of automated thinking, and the more you're in control of your actual decisions, assuming way of thinking is already curious and inquisitive. E.g. you debate and spend time exploring each thought as needed.
+**TLDR:** the more that you use AI, the more that you develop your own way of automated thinking, and the more you're in control of your actual decisions, assuming your way of thinking is already curious and inquisitive. E.g. you debate and spend time exploring each thought as needed.
 
