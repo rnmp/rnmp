@@ -30,6 +30,7 @@ In no particular order:
 - Went to see Japanese Breakfast and SPELLLING. Separate occassions, both vibey.
 - Read (ok, half-read) Courage to be Disliked but thoroughly enjoyed the philosophy.
 - Taught my son the foundations of how to code with and without AI.
+- Also finally got to spend time in Toronto proper for a couple of days. Surprisingly great Asian food.
 
 If I think of more I'll add. I still got like 29 more days, right?
 
