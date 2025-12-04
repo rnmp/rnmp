@@ -35,14 +35,7 @@ const selectedBackground =  backgroundVariants[backgroundVariant];
     <link is:inline rel="preconnect" href="https://fonts.googleapis.com">
     <link is:inline rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link is:inline href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-0HVRQ30KRH"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-0HVRQ30KRH');
-    </script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="7f10086a-2f16-43d0-bf6e-5e81615932d2"></script>
   </head>
   <body data-background-path={selectedBackground.path} data-background-preview={selectedBackground.preview} data-animate={animate.toString()}>
     <slot />
