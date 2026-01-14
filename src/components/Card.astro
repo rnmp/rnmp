@@ -140,6 +140,20 @@ const sizeClass = `card-size-${size}`;
     .card.expandable {
       cursor: pointer;
     }
+
+    /* Force social card to horizontal layout on mobile */
+    .card.social-card {
+      flex-direction: row !important;
+      height: 52px;
+      align-items: center;
+    }
+
+    /* Typing card height on mobile */
+    .card.typing-card {
+      height: 52px;
+      display: flex;
+      align-items: center;
+    }
   }
   
   /* Special styling for social card */

@@ -55,14 +55,16 @@ const Content = {
           </Fragment>
         </Card>
 
-        <Card href="/typing" class="card-animate typing-card" size="auto" style={{ padding: "0.5em 1.25em"}} id="card-typing">
-          <TypingTitleCompact />
-        </Card>
+        <div class="card-row">
+          <Card href="/typing" class="card-animate typing-card" size="auto" style={{ padding: "0.5em 1.25em"}} id="card-typing">
+            <TypingTitleCompact />
+          </Card>
 
-        <Card class="social-card card-animate" size="auto" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em"}} id="card-social">
-          <SocialIcon variant="threads" size={28} />
-          <SocialIcon variant="x" size={28} />
-        </Card>
+          <Card class="social-card card-animate" size="auto" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1em"}} id="card-social">
+            <SocialIcon variant="threads" size={28} />
+            <SocialIcon variant="x" size={28} />
+          </Card>
+        </div>
     </main>
 </Layout>
 
@@ -80,11 +82,44 @@ const Content = {
     flex-direction: column;
   }
 
+  /* Card row for social and typing cards */
+  .card-row {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  /* Desktop - card-row doesn't affect layout */
+  @media (min-width: 769px) {
+    .card-row {
+      display: contents; /* Makes the wrapper disappear, children behave normally */
+    }
+
+    #card-social {
+      flex-direction: column !important;
+    }
+  }
+
   /* Mobile layout - cards as list */
   @media (max-width: 768px) {
     main {
       padding: 0 1rem;
       padding-bottom: 2rem;
+    }
+
+    .card-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-row .card {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    #card-social {
+      flex-direction: row !important;
     }
   }
   .hero-section {
