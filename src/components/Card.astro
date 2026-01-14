@@ -569,6 +569,23 @@ const sizeClass = `card-size-${size}`;
     }
   }
 
+  // Handle expandable cards on mobile
+  function setupMobileExpandable(element) {
+    element.addEventListener('click', function(e) {
+      // Don't expand if clicking on a link
+      if (e.target.tagName === 'A' || e.target.closest('a')) {
+        return;
+      }
+      element.classList.toggle('expanded');
+
+      // Raise z-index when expanding
+      if (element.classList.contains('expanded')) {
+        highestZIndex++;
+        element.style.zIndex = highestZIndex;
+      }
+    });
+  }
+
   // Initialize draggable cards and position them
   document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
@@ -577,6 +594,13 @@ const sizeClass = `card-size-${size}`;
     if (!isMobile) {
       cards.forEach(card => {
         makeDraggable(card);
+      });
+    } else {
+      // On mobile, set up click handlers for expandable cards
+      cards.forEach(card => {
+        if (card.classList.contains('expandable')) {
+          setupMobileExpandable(card);
+        }
       });
     }
     positionCards();
@@ -598,12 +622,20 @@ const sizeClass = `card-size-${size}`;
           // Switching to desktop - make cards draggable
           cards.forEach(card => {
             makeDraggable(card);
+            // Remove mobile click handlers
+            if (card.classList.contains('expandable')) {
+              const newCard = card.cloneNode(true);
+              card.parentNode.replaceChild(newCard, card);
+            }
           });
         } else {
-          // Switching to mobile - remove drag handlers
+          // Switching to mobile - remove drag handlers and add expandable handlers
           cards.forEach(card => {
             card.onmousedown = null;
             card.ontouchstart = null;
+            if (card.classList.contains('expandable')) {
+              setupMobileExpandable(card);
+            }
           });
         }
         wasMobile = isMobile;
