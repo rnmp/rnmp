@@ -5,15 +5,19 @@ export interface Props {
   class?: string;
   id?: string;
   expandable?: boolean;
+  size?: 'small' | 'medium' | 'large' | 'xlarge' | 'auto';
 }
 
-const { href, style, class: className = '', id, expandable } = Astro.props;
+const { href, style, class: className = '', id, expandable, size = 'medium' } = Astro.props;
 const Tag = href ? 'a' : 'div';
 const isExternalLink = href && href.includes('http');
 const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undefined } : {};
+
+// Define size classes for desktop
+const sizeClass = `card-size-${size}`;
 ---
 
-<Tag class={`card ${className} ${expandable ? 'expandable' : ''}`} style={style} id={id} {...additionalProps}>
+<Tag class={`card ${sizeClass} ${className} ${expandable ? 'expandable' : ''}`} style={style} id={id} {...additionalProps}>
     <slot />
   {expandable && (
   <div class="expandable-content">
@@ -36,7 +40,6 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
   }
 
   .card {
-    position: absolute;
     padding: 1.5em 1.5em 1.25em;
     background-color: rgba(20, 20, 30, 0.4);
     backdrop-filter: blur(12px);
@@ -45,11 +48,49 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
     cursor: default;
     user-select: none;
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), 
+    transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1),
                 box-shadow 0.2s cubic-bezier(0.19, 1, 0.22, 1);
     display: flex;
     flex-direction: column;
     line-height: 1.5;
+    width: 100%; /* Full width by default (mobile) */
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  /* Desktop size classes - only apply on larger screens */
+  @media (min-width: 769px) {
+    .card {
+      position: absolute;
+      width: auto; /* Reset to auto for desktop */
+      margin-bottom: 0;
+    }
+
+    .card-size-small {
+      width: 240px;
+    }
+
+    .card-size-medium {
+      width: 280px;
+    }
+
+    .card-size-large {
+      width: 320px;
+    }
+
+    .card-size-xlarge {
+      width: 380px;
+    }
+
+    .card-size-auto {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .card {
+      position: absolute;
+    }
   }
   
   /* Style anchor cards the same as div cards */
@@ -78,15 +119,26 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
     z-index: 9999 !important;
   }
   
-  /* Mobile styles */
+  /* Mobile styles - Cards as list */
   @media (max-width: 768px) {
     .card {
       min-height: 44px; /* iOS minimum touch target */
+      cursor: pointer; /* Change from default to pointer for clickable cards */
+      position: relative !important; /* Override absolute positioning */
+      width: 100%;
+      margin: 0 auto 1rem;
+      max-width: 100%;
     }
-    
-    /* Social card stays on top on mobile */
-    .social-card {
-      z-index: 1000 !important;
+
+    /* Remove dragging visual feedback on mobile */
+    .card.dragging {
+      transform: none !important;
+      box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Expandable cards should still have pointer cursor */
+    .card.expandable {
+      cursor: pointer;
     }
   }
   
@@ -140,19 +192,25 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
   let cardPositions = new Map();
   let cardHasMoved = new Map();
 
-  // Make cards draggable
+  // Make cards draggable (desktop only)
   function makeDraggable(element) {
+    // Skip dragging on mobile
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) return;
+
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     let isDragging = false;
     let hasMoved = false;
     let startX = 0, startY = 0;
     let touchStartTime = 0;
-    
+
     // Mouse events
     element.onmousedown = dragStart;
-    
-    // Touch events
-    element.ontouchstart = dragStart;
+
+    // Touch events (disabled on mobile)
+    if (!isMobile) {
+      element.ontouchstart = dragStart;
+    }
     
     // Prevent default click on anchor cards if dragged
     if (element.tagName === 'A' || element.classList.contains('expandable')) {
@@ -425,26 +483,41 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
     };
   }
 
-  // Position all cards randomly without overlap
+  // Position all cards randomly without overlap (desktop) or as list (mobile)
   function positionCards(animate = false) {
     const cards = document.querySelectorAll('.card');
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // On mobile, cards are positioned naturally in the document flow
+      // Remove any absolute positioning styles
+      cards.forEach(card => {
+        card.style.position = '';
+        card.style.left = '';
+        card.style.top = '';
+        card.style.zIndex = '';
+      });
+      return;
+    }
+
+    // Desktop positioning logic
     const placedCards = [];
-    
+
     // Add transition class if animating
     if (animate) {
       cards.forEach(card => card.classList.add('transitioning'));
     }
-    
+
     cards.forEach((card, index) => {
       // If card has been manually moved, check if it's still visible
       if (cardPositions.has(card.id)) {
         const pos = cardPositions.get(card.id);
         const safeArea = getSafeArea();
         const cardRect = card.getBoundingClientRect();
-        
+
         // Check if card is out of bounds
-        if (pos.left < 0 || pos.top < safeArea.minY || 
-            pos.left + cardRect.width > window.innerWidth || 
+        if (pos.left < 0 || pos.top < safeArea.minY ||
+            pos.left + cardRect.width > window.innerWidth ||
             pos.top + cardRect.height > window.innerHeight) {
           // Reposition if out of bounds
           const position = findNonOverlappingPosition(card, placedCards, index);
@@ -473,7 +546,7 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
         placedCards.push({ card, rect: position.rect });
       }
     });
-    
+
     // Remove transition class after animation completes
     if (animate) {
       setTimeout(() => {
@@ -485,17 +558,43 @@ const additionalProps = href ? { href, target: isExternalLink ? '_blank' : undef
   // Initialize draggable cards and position them
   document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      makeDraggable(card);
-    });
+    const isMobile = window.innerWidth <= 768;
+
+    if (!isMobile) {
+      cards.forEach(card => {
+        makeDraggable(card);
+      });
+    }
     positionCards();
   });
 
-  // Reposition cards on resize
+  // Reposition cards on resize and handle mobile/desktop switch
   let resizeTimeout;
+  let wasMobile = window.innerWidth <= 768;
+
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
+      const isMobile = window.innerWidth <= 768;
+      const cards = document.querySelectorAll('.card');
+
+      // If switching between mobile and desktop, reinitialize
+      if (wasMobile !== isMobile) {
+        if (!isMobile) {
+          // Switching to desktop - make cards draggable
+          cards.forEach(card => {
+            makeDraggable(card);
+          });
+        } else {
+          // Switching to mobile - remove drag handlers
+          cards.forEach(card => {
+            card.onmousedown = null;
+            card.ontouchstart = null;
+          });
+        }
+        wasMobile = isMobile;
+      }
+
       positionCards(true); // animate on resize
     }, 250);
   });

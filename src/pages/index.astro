@@ -7,12 +7,8 @@ import CardOneliner from '../components/CardOneliner.astro';
 import TypingTitleCompact from '../components/TypingTitleCompact.astro';
 
 const Content = {
-  tagline: `
-Whimsical software,  
-among other things
-  `,
   seoDescription:
-    "Peruvian-American engineer & designer based in Philadelphia, PA.",
+    "Peruvian-American designer & programmer based in Philadelphia, PA.",
 };
 ---
 
@@ -23,32 +19,32 @@ among other things
           <span class="line line-2" style="position: relative; left: 0.1em">for everyday life</span>
         </header>
 
-        <Card href="https://ballpark.cc/" target="_blank" class="card-animate" style={{ width: "280px"}} id="card-ballpark">
+        <Card href="https://ballpark.cc/" target="_blank" class="card-animate" size="medium" id="card-ballpark">
         <img src="/ballpark.png" alt="Coleure's icon" style={{ width: "10vw", maxWidth: "200px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
             <CardOneliner title="Ballpark">Retro-inspired networth tracker.</CardOneliner>
         </Card>
 
-        <Card href="https://coleure.rolando.is/" target="_blank" class="card-animate" style={{ width: "280px"}} id="card-coleure">
+        <Card href="https://coleure.rolando.is/" target="_blank" class="card-animate" size="medium" id="card-coleure">
         <img src="/coleure.png" alt="Coleure's icon" style={{ width: "10vw", maxWidth: "200px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
             <CardOneliner title="Coleure">Totally batshit crazy color picker (fun though.)</CardOneliner>
         </Card>
 
-        <Card href="https://shorthand.ink/" target="_blank" class="card-animate" style={{ width: "280px"}} id="card-shorthand">
+        <Card href="https://shorthand.ink/" target="_blank" class="card-animate" size="medium" id="card-shorthand">
           <img src="/shorthand_snapshot.png" alt="Bleep's icon" style={{ width: "10vw", maxWidth: "200px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
             <CardOneliner title="ShortHand">Sync your handwritten notes to Notion.</CardOneliner>
         </Card>
 
-        <Card href="https://bleep.is/" target="_blank" class="card-animate" style={{ width: "280px"}} id="card-bleep">
+        <Card href="https://bleep.is/" target="_blank" class="card-animate" size="medium" id="card-bleep">
           <img src="/bleep_icon.png" alt="Bleep's icon" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
             <CardOneliner title="Bleep">Ultra-niche thoughtboard for creatives.</CardOneliner>
         </Card>
 
-        <Card href="https://testflight.apple.com/join/pumSW2WF" class="card-animate" style={{ width: "300px"}} id="card-flow">
+        <Card href="https://testflight.apple.com/join/pumSW2WF" class="card-animate" size="large" id="card-flow">
         <img src="/flow_icon.png" alt="Flow's icon" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em" }} />
           <CardOneliner title="Flow">Casual money tracker. <br/>Join the TestFlight for iPhone.</CardOneliner>
         </Card>
 
-        <Card class="card-animate" style={{ width: "310px"}} id="card-about" expandable={true}>
+        <Card class="card-animate" size="large" id="card-about" expandable={true}>
           <img src="/avatar.png" alt="Rolando's avatar" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
           <CardOneliner title="About me">Heyoo, I’m Rolando 👋<br />Jack of all trades, master of some.</CardOneliner>
           <Fragment slot="expandable">
@@ -59,11 +55,11 @@ among other things
           </Fragment>
         </Card>
 
-        <Card href="/typing" class="card-animate typing-card" style={{ width: "auto", padding: "0.5em 1.25em"}} id="card-typing">
+        <Card href="/typing" class="card-animate typing-card" size="auto" style={{ padding: "0.5em 1.25em"}} id="card-typing">
           <TypingTitleCompact />
         </Card>
 
-        <Card class="social-card card-animate" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em", width: "auto"}} id="card-social">
+        <Card class="social-card card-animate" size="auto" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1em"}} id="card-social">
           <SocialIcon variant="threads" size={28} />
           <SocialIcon variant="x" size={28} />
         </Card>
@@ -75,10 +71,21 @@ among other things
     -webkit-user-select: none;
     user-select: none;
   }
+  html, body {
+    overflow: auto;
+  }
   main {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+  }
+
+  /* Mobile layout - cards as list */
+  @media (max-width: 768px) {
+    main {
+      padding: 0 1rem;
+      padding-bottom: 2rem;
+    }
   }
   .hero-section {
     font-size: 72px;
@@ -134,12 +141,6 @@ among other things
     .hero-section {
       font-size: 32px;
       text-align: center;
-    }
-  }
-
-  @media (orientation: portrait) {
-    main {
-      justify-content: flex-end;
     }
   }
 </style>
