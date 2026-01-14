@@ -15,6 +15,7 @@ const Content = {
 <Layout title="Rolando" description="Peruvian-American engineer & designer based in Philadelphia, PA.">
     <main>
         <header class="hero-section">
+          <img src="/avatar.png" alt="Rolando's avatar" class="mobile-avatar" />
           <span class="line line-1">Whimsical tools</span>
           <span class="line line-2" style="position: relative; left: 0.1em">for everyday life</span>
         </header>
@@ -29,11 +30,6 @@ const Content = {
             <CardOneliner title="Bleep">Ultra-niche thoughtboard for creatives.</CardOneliner>
         </Card>
 
-        <Card href="" class="card-animate" size="large" id="card-flow">
-        <img src="/flow_icon.png" alt="Flow's icon" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em" }} />
-          <CardOneliner title="Flow">Casual money tracker. <br/>Currently in development.</CardOneliner>
-        </Card>
-
         <Card href="https://ballpark.cc/" target="_blank" class="card-animate" size="medium" id="card-ballpark">
         <img src="/ballpark.png" alt="Coleure's icon" style={{ width: "10vw", maxWidth: "200px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
             <CardOneliner title="Ballpark">Retro-inspired networth tracker.</CardOneliner>
@@ -44,6 +40,10 @@ const Content = {
             <CardOneliner title="Coleure">Totally batshit crazy color picker (fun though.)</CardOneliner>
         </Card>
 
+        <Card href="" class="card-animate" size="large" id="card-flow">
+        <img src="/flow_icon.png" alt="Flow's icon" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em" }} />
+          <CardOneliner title="Flow">Casual money tracker. <br/>Currently in development.</CardOneliner>
+        </Card>
 
         <Card class="card-animate" size="large" id="card-about" expandable={true}>
           <img src="/avatar.png" alt="Rolando's avatar" style={{ width: "48px", height: "auto", borderRadius: "10px", marginBottom: "1em"  }} />
@@ -57,13 +57,13 @@ const Content = {
         </Card>
 
         <div class="card-row">
-          <Card href="/typing" class="card-animate typing-card" size="auto" style={{ padding: "0.5em 1.25em"}} id="card-typing">
-            <TypingTitleCompact />
-          </Card>
-
           <Card class="social-card card-animate" size="auto" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1em"}} id="card-social">
             <SocialIcon variant="threads" size={28} />
             <SocialIcon variant="x" size={28} />
+          </Card>
+
+          <Card href="/typing" class="card-animate typing-card" size="auto" style={{ padding: "0.5em 1.25em"}} id="card-typing">
+            <TypingTitleCompact />
           </Card>
         </div>
     </main>
@@ -130,12 +130,37 @@ const Content = {
     padding: 1em;
     font-family: 'Jugendreisen', system-ui, -apple-system, sans-serif;
     color: white;
-    text-shadow: 
-      0 0 20px rgba(255, 255, 255, 0.6), 
-      0 0 40px rgba(255, 255, 255, 0.4), 
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.6),
+      0 0 40px rgba(255, 255, 255, 0.4),
       0 0 60px rgba(255, 255, 255, 0.3),
       0 0.025em 0 hsla(274, 62%, 79%, 1.0),
       0 8px 16px hsl(210, 51%, 5%);
+  }
+
+  /* Mobile avatar - hidden by default */
+  .mobile-avatar {
+    display: none;
+  }
+
+  /* Show avatar only on mobile */
+  @media (max-width: 768px) {
+    .mobile-avatar {
+      display: block;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      margin-top: 10dvh;
+      box-shadow: 0 0 1px rgba(255, 255, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .line {

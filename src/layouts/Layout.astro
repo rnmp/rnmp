@@ -110,6 +110,13 @@ const selectedBackground =  backgroundVariants[backgroundVariant];
     animation: zoomOut 7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
 
+  /* Bias background to the left on mobile for better contrast */
+  @media (max-width: 768px) {
+    body::before {
+      background-position: left center;
+    }
+  }
+
   body::before[data-animated="true"] {
     transform: scale(1.1);
   }
