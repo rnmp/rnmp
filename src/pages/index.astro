@@ -152,6 +152,14 @@ const Content = {
     animation-delay: 0.3s;
   }
 
+  /* Remove animations on mobile */
+  @media (max-width: 768px) {
+    .line {
+      opacity: 1;
+      animation: none;
+    }
+  }
+
   @keyframes fadeInSlideUp {
     from {
       opacity: 0;
@@ -189,24 +197,46 @@ const Content = {
     animation: cardFadeInSlideUp 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   }
 
-  #card-bleep {
+  /* Disable card animations on mobile */
+  @media (max-width: 768px) {
+    .card-animate {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
+  /* Animation delays following the new card order */
+  #card-shorthand {
     animation-delay: 0.5s;
   }
 
-  #card-flow {
+  #card-bleep {
     animation-delay: 0.7s;
   }
 
-  #card-about {
+  #card-flow {
     animation-delay: 0.9s;
   }
 
-  #card-typing {
+  #card-ballpark {
     animation-delay: 1.1s;
   }
 
-  #card-social {
+  #card-coleure {
     animation-delay: 1.3s;
+  }
+
+  #card-about {
+    animation-delay: 1.5s;
+  }
+
+  #card-typing {
+    animation-delay: 1.7s;
+  }
+
+  #card-social {
+    animation-delay: 1.7s;  /* Same as typing since they're in the same row */
   }
 
   @keyframes cardFadeInSlideUp {
