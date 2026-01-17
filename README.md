@@ -5,5 +5,5 @@ explore your thoughts. I'm based in Philly,
 though originally from Peru/Bolivia.
 
 When I'm not building, I'm probably watching  
-horror movies, playing Rocket League, or riding   
-Nitro at Six Flags.
+horror movies, playing Rocket League, or  
+riding Nitro at Six Flags.
