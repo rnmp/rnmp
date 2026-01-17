@@ -2,7 +2,7 @@
 
 I create apps that help you slow down and  
 explore your thoughts. I'm based in Philly,  
-though originally from Peru/Bolivia.
+though originally from Peru &amp; Bolivia.
 
 When I'm not building, I'm probably watching  
 horror movies, playing Rocket League, or  
