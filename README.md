@@ -1,4 +1,4 @@
-### Heyoo, I'm Rolando 👋<br />Jack of all trades, master of some.
+### Heyoo, I'm Rolando 👋
 
 I create apps that help you slow down and  
 explore your thoughts. I'm based in Philly,  
