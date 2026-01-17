@@ -1,4 +1,4 @@
-#### Heyoo, I'm Rolando 👋<br />Jack of all trades, master of some.
+### Heyoo, I'm Rolando 👋<br />Jack of all trades, master of some.
 
 I design & build apps that help you slow down  
 and have fun with your thoughts. I'm based in  
